@@ -9,6 +9,8 @@ Crateview ist eine Weboberfläche für Docker- und OCI-Container-Registries. Du 
 
 Es läuft neben deiner Registry. Die Registry speichert Images und setzt Zugriffsregeln durch; Crateview liefert die Oberfläche und einen Proxy unter demselben Origin. Docker und andere OCI-Clients können den Frontend-Origin als Registry-Adresse verwenden.
 
+![Crateview-Übersicht mit Alpine und verschachtelten Demo-Repositories.](https://crateview.de/images/repositories-light.webp)
+
 ## Architektur
 
 ```text

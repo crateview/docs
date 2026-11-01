@@ -15,6 +15,8 @@ Drücke außerhalb eines Eingabefelds `/` oder verwende `Ctrl+K`, um die Navbar-
 
 Bei einem Multiarch-Image wählst du Betriebssystem und Architektur über die Plattformauswahl. Layer-Historie und ausgewählte Image-Config folgen dieser Auswahl. Der Tab Manifest zeigt das Root-Manifest oder den Index des Images; Konfiguration zeigt die Config der ausgewählten Plattform.
 
+![Alpine-Image mit Plattformauswahl, Layer-Historie und Pull-Befehl.](https://crateview.de/images/image-light.webp)
+
 ## Pull-Befehle
 
 Das Befehlspanel bietet Docker-, Podman- und Skopeo-Befehle für Images sowie ORAS-/Podman-Artefaktbefehle für Artefakte. Kopiere den Befehl und führe ihn in deinem Terminal aus.

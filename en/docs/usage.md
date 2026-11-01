@@ -15,6 +15,8 @@ Open a repository and select a tag. The image view shows its digest, available p
 
 For a multi-platform image, choose the operating system and architecture in the platform selector. The layer history and selected image config follow that choice. The raw Manifest tab shows the image's root manifest or index; Configuration shows the selected platform's config.
 
+![Alpine image details with platform selection, layer history and pull command.](https://crateview.de/images/image-light.webp)
+
 ## Pull commands
 
 The command panel provides Docker, Podman and Skopeo commands for images, and ORAS/Podman artifact commands for artifacts. Copy the command and run it in your own terminal.
