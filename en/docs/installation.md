@@ -1,30 +1,197 @@
 ---
-title: 'Installation'
-description: 'Start the complete stack or connect the UI to an existing registry.'
+title: "Installation"
+description: "Start the complete stack or connect the UI to an existing registry."
 ---
 
 ## Requirements
 
 Use Node.js 24.22.2 or newer within v24 for local development, or Docker with Compose for the complete stack. An existing registry must expose Registry HTTP API V2; the bundled stack uses the official `registry:3.1.2` image.
 
-## Complete Docker Compose stack
+## Docker Compose examples
+
+Choose **one** of the following variants and save it as `compose.yaml` in its own directory. No repository clone is required. Create a `.env` file alongside it with the values shown for that variant. Compose explicitly passes these values to the container.
+
+Generate a random value of at least 32 characters for `NUXT_SESSION_PASSWORD`:
 
 ```sh
-git clone https://github.com/crateview/registry-ui.git
-cd registry-ui
+openssl rand -base64 32
+```
+
+Keep this key stable and protect `.env`; do not commit it to version control. Published Crateview images support Linux amd64.
+
+### UI with an existing registry
+
+Requires a Registry HTTP API V2 endpoint reachable from the container. Example `.env` (replace the address; do not include credentials in the URL):
+
+```dotenv
+NUXT_REGISTRY_UPSTREAM=https://registry.example.com
+NUXT_SESSION_PASSWORD=REPLACE_WITH_GENERATED_SECRET
+```
+
+```yaml
+services:
+  frontend:
+    image: ghcr.io/crateview/registry-ui:v0.1.0
+    ports:
+      - "127.0.0.1:3000:3000"
+    environment:
+      NUXT_REGISTRY_UPSTREAM: ${NUXT_REGISTRY_UPSTREAM:?Set NUXT_REGISTRY_UPSTREAM}
+      NUXT_SESSION_PASSWORD: ${NUXT_SESSION_PASSWORD:?Set NUXT_SESSION_PASSWORD}
+    restart: unless-stopped
+```
+
+```sh
+docker compose config --quiet
 docker compose pull
 docker compose up -d
 ```
 
-Open **http://localhost:3000**. Compose downloads the released `ghcr.io/crateview/registry-ui:v0.1.0` image and starts the registry on an internal Docker network. Registry storage persists in the `registry-data` volume. Only the frontend port is published, bound to loopback by default.
+Open **http://localhost:3000**. An upstream of `127.0.0.1` refers to the container itself. Use a reachable DNS name or a service address on a shared Docker network.
 
-Push an image through the same origin:
+### UI with its own registry
+
+Local stack without authentication. Only the UI port is published on loopback; the registry stays on the Docker network. `.env`:
+
+```dotenv
+NUXT_SESSION_PASSWORD=REPLACE_WITH_GENERATED_SECRET
+```
+
+```yaml
+services:
+  registry:
+    image: registry:3.1.2
+    environment:
+      OTEL_TRACES_EXPORTER: none
+      REGISTRY_STORAGE_DELETE_ENABLED: "true"
+    volumes:
+      - registry-data:/var/lib/registry
+    restart: unless-stopped
+  frontend:
+    image: ghcr.io/crateview/registry-ui:v0.1.0
+    ports:
+      - "127.0.0.1:3000:3000"
+    environment:
+      NUXT_REGISTRY_UPSTREAM: http://registry:5000
+      NUXT_SESSION_PASSWORD: ${NUXT_SESSION_PASSWORD:?Set NUXT_SESSION_PASSWORD}
+    depends_on:
+      - registry
+    restart: unless-stopped
+
+volumes:
+  registry-data:
+```
+
+```sh
+docker compose config --quiet
+docker compose pull
+docker compose up -d
+```
+
+Open **http://localhost:3000**. Registry data persists in the `registry-data` volume. Push and pull an image through the same origin:
 
 ```sh
 docker pull alpine:latest
 docker tag alpine:latest localhost:3000/alpine:latest
 docker push localhost:3000/alpine:latest
+docker pull localhost:3000/alpine:latest
 ```
+
+### UI, registry and Traefik with HTTPS
+
+Standalone stack including Traefik and Let's Encrypt. Requires a publicly reachable server, available and permitted TCP ports 80/443, and a domain whose DNS records point to that server. Port 80 must remain reachable for the HTTP-01 challenge. `.env`:
+
+```dotenv
+CRATEVIEW_DOMAIN=registry.example.com
+ACME_EMAIL=admin@example.com
+NUXT_SESSION_PASSWORD=REPLACE_WITH_GENERATED_SECRET
+```
+
+Enter the domain without a scheme or path. Replace all example values. Then interactively create a bcrypt `htpasswd` file; replace `your-user` with your username:
+
+```sh
+mkdir -p auth
+chmod 700 auth
+docker run --rm -it --mount type=bind,src="$(pwd)/auth",dst=/auth \
+  --entrypoint htpasswd httpd:2 -Bc /auth/htpasswd your-user
+```
+
+The password is prompted for and does not appear in the command. `-c` creates a new file; omit it when adding users. Protect and back up the `auth` directory. Save this `compose.yaml` alongside it:
+
+```yaml
+services:
+  traefik:
+    image: traefik:v3.7.17
+    command:
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --entrypoints.web.address=:80
+      - --entrypoints.web.http.redirections.entrypoint.to=websecure
+      - --entrypoints.web.http.redirections.entrypoint.scheme=https
+      - --entrypoints.websecure.address=:443
+      - --certificatesresolvers.letsencrypt.acme.email=${ACME_EMAIL:?Set ACME_EMAIL}
+      - --certificatesresolvers.letsencrypt.acme.storage=/letsencrypt/acme.json
+      - --certificatesresolvers.letsencrypt.acme.httpchallenge.entrypoint=web
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - letsencrypt:/letsencrypt
+    restart: unless-stopped
+  registry:
+    image: registry:3.1.2
+    environment:
+      OTEL_TRACES_EXPORTER: none
+      REGISTRY_STORAGE_DELETE_ENABLED: "true"
+      REGISTRY_AUTH: htpasswd
+      REGISTRY_AUTH_HTPASSWD_REALM: Registry
+      REGISTRY_AUTH_HTPASSWD_PATH: /auth/htpasswd
+    volumes:
+      - registry-data:/var/lib/registry
+      - ./auth:/auth:ro
+    restart: unless-stopped
+  frontend:
+    image: ghcr.io/crateview/registry-ui:v0.1.0
+    environment:
+      NUXT_REGISTRY_UPSTREAM: http://registry:5000
+      NUXT_SESSION_PASSWORD: ${NUXT_SESSION_PASSWORD:?Set NUXT_SESSION_PASSWORD}
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.crateview.rule: Host(`${CRATEVIEW_DOMAIN:?Set CRATEVIEW_DOMAIN}`)
+      traefik.http.routers.crateview.entrypoints: websecure
+      traefik.http.routers.crateview.tls.certresolver: letsencrypt
+      traefik.http.routers.crateview.service: crateview
+      traefik.http.services.crateview.loadbalancer.server.port: "3000"
+    depends_on:
+      - registry
+    restart: unless-stopped
+
+volumes:
+  registry-data:
+  letsencrypt:
+```
+
+```sh
+docker compose config --quiet
+docker compose pull
+docker compose up -d
+```
+
+Open **https://registry.example.com** using your domain and sign in with the registry user you created. Traefik obtains the certificate automatically and redirects HTTP to HTTPS. Certificates persist in `letsencrypt`, registry data in `registry-data`. Back up both volumes and do not use `docker compose down -v` for routine shutdowns.
+
+All paths, including `/v2/`, go through Crateview. Neither the registry nor the UI publishes its own host ports. The registry enforces Basic Auth; no additional Traefik Basic Auth is required. Traefik preserves the public host and forwards the HTTPS protocol to Crateview. The Docker socket gives Traefik access to the Docker API; run this stack on a trusted host.
+
+CLI login and image transfer (replace the domain):
+
+```sh
+docker login registry.example.com --username your-user
+docker pull alpine:latest
+docker tag alpine:latest registry.example.com/alpine:latest
+docker push registry.example.com/alpine:latest
+docker pull registry.example.com/alpine:latest
+```
+
+The CLI prompts for the password separately from the UI login. See [authentication](/docs/authentication) and [Traefik with Docker and Let’s Encrypt](https://doc.traefik.io/traefik/setup/docker/#tls-certificate-management-lets-encrypt) for details.
 
 ## Use an existing registry
 
@@ -62,8 +229,10 @@ Continue with [configuration](/docs/configuration) before exposing the service b
 
 ## Build from source
 
-Published images support Linux amd64. To build locally instead:
+For a local build, use the Compose files from the source repository:
 
 ```sh
+git clone https://github.com/crateview/registry-ui.git
+cd registry-ui
 docker compose -f compose.yaml -f compose.build.yaml up --build -d
 ```
