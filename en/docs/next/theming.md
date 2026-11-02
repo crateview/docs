@@ -50,4 +50,31 @@ NUXT_PUBLIC_BRAND_TITLE_TEMPLATE=%s · My Registry
 
 Place local assets in `public/` before building, or use HTTP(S) asset URLs. Existing optional product, documentation and repository links can be configured through their corresponding `NUXT_PUBLIC_BRAND_*_URL` variables. Public configuration is visible in the browser and must never contain secrets.
 
+### Server files without rebuilding
+
+Alternatively, configure private server-side file paths. Each configured file takes precedence over its corresponding public URL; leaving a file variable empty preserves the URL setting. Absolute paths are supported; relative paths resolve against the server working directory (`/app` in the Docker image). Filesystem paths are never sent to the browser. The assets themselves are public, including before sign-in.
+
+```dotenv
+NUXT_BRAND_LOGO_LIGHT_FILE=/app/branding/logo-light.svg
+NUXT_BRAND_LOGO_DARK_FILE=/app/branding/logo-dark.svg
+NUXT_BRAND_FAVICON_FILE=/app/branding/favicon.ico
+```
+
+Supported extensions: SVG, PNG, JPG/JPEG, WebP, GIF and ICO. Files must be readable, nonempty regular files; invalid settings stop server startup. Files are loaded at startup: restart after changing paths or file contents. No rebuild is needed.
+
+For Docker Compose, create a `compose.branding.yaml` override:
+
+```yaml
+services:
+  frontend:
+    volumes:
+      - ./branding:/app/branding:ro
+    environment:
+      NUXT_BRAND_LOGO_LIGHT_FILE: /app/branding/logo-light.svg
+      NUXT_BRAND_LOGO_DARK_FILE: /app/branding/logo-dark.svg
+      NUXT_BRAND_FAVICON_FILE: /app/branding/favicon.ico
+```
+
+Create the three files in `./branding` on the host and allow the container’s `node` user to read them. Start with `docker compose -f compose.yaml -f compose.branding.yaml up -d`. The mount is read-only; configured paths refer to files inside the container. These private file variables apply to the registry UI.
+
 The Crateview website reuses the registry UI's mark, theme defaults and branding variable names. The website is maintained separately; its source and deployment configuration are private. Its documentation sources are public in [crateview/docs](https://github.com/crateview/docs).

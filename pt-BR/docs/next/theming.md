@@ -1,6 +1,6 @@
 ---
-title: "Marca e tema"
-description: "Use sua própria identidade enquanto mantém o sistema de design nativo da UI Nuxt."
+title: 'Marca e tema'
+description: 'Use sua própria identidade enquanto mantém o sistema de design nativo da UI Nuxt.'
 ---
 
 ![Marca e tema](https://crateview.de/images/docs/next/settings-light.webp)
@@ -49,5 +49,32 @@ NUXT_PUBLIC_BRAND_TITLE_TEMPLATE=%s · My Registry
 ```
 
 Coloque ativos locais em `public/` antes de compilar ou use URLs de ativos HTTP(S). Links opcionais existentes de produtos, documentação e repositórios podem ser configurados por meio de suas variáveis ​​`NUXT_PUBLIC_BRAND_*_URL` correspondentes. A configuração pública é visível no navegador e nunca deve conter segredos.
+
+### Arquivos do servidor sem recompilar
+
+Você também pode configurar caminhos privados de arquivos no servidor. Cada arquivo configurado tem prioridade sobre sua URL pública correspondente; uma variável de arquivo vazia mantém a URL. Caminhos absolutos são aceitos; os relativos partem do diretório de trabalho do servidor (`/app` na imagem Docker). Os caminhos nunca são enviados ao navegador. Os recursos são públicos, inclusive antes do login.
+
+```dotenv
+NUXT_BRAND_LOGO_LIGHT_FILE=/app/branding/logo-light.svg
+NUXT_BRAND_LOGO_DARK_FILE=/app/branding/logo-dark.svg
+NUXT_BRAND_FAVICON_FILE=/app/branding/favicon.ico
+```
+
+Extensões aceitas: SVG, PNG, JPG/JPEG, WebP, GIF e ICO. Os arquivos devem ser regulares, legíveis e não vazios; configurações inválidas impedem a inicialização do servidor. Os arquivos são carregados na inicialização: reinicie após alterar caminhos ou conteúdos. Não é necessário recompilar.
+
+Para Docker Compose, crie um arquivo de substituição `compose.branding.yaml`:
+
+```yaml
+services:
+  frontend:
+    volumes:
+      - ./branding:/app/branding:ro
+    environment:
+      NUXT_BRAND_LOGO_LIGHT_FILE: /app/branding/logo-light.svg
+      NUXT_BRAND_LOGO_DARK_FILE: /app/branding/logo-dark.svg
+      NUXT_BRAND_FAVICON_FILE: /app/branding/favicon.ico
+```
+
+Crie os três arquivos em `./branding` no host e permita a leitura pelo usuário `node` do contêiner. Execute `docker compose -f compose.yaml -f compose.branding.yaml up -d`. A montagem é somente leitura; os caminhos configurados apontam para arquivos dentro do contêiner. Essas variáveis privadas de arquivos se aplicam à interface do registro.
 
 O site Crateview reutiliza a marca da interface do usuário do registro, padrões de tema e nomes de variáveis ​​de marca. O site é mantido separadamente; sua configuração de origem e implantação é privada. Suas fontes de documentação são públicas em [crateview/docs](https://github.com/crateview/docs).

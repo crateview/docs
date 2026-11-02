@@ -1,6 +1,6 @@
 ---
-title: "品牌和主题"
-description: "使用您自己的身份，同时保留 Nuxt UI 的原生设计系统。"
+title: '品牌和主题'
+description: '使用您自己的身份，同时保留 Nuxt UI 的原生设计系统。'
 ---
 
 ![品牌和主题](https://crateview.de/images/docs/next/settings-light.webp)
@@ -49,5 +49,32 @@ NUXT_PUBLIC_BRAND_TITLE_TEMPLATE=%s · My Registry
 ```
 
 在构建之前将本地资源放置在 `public/` 中，或使用 HTTP(S) 资源 URL。现有的可选产品、文档和存储库链接可以通过其相应的 `NUXT_PUBLIC_BRAND_*_URL` 变量进行配置。公共配置在浏览器中可见，并且绝不能包含机密。
+
+### 无需重新构建即可使用服务器文件
+
+也可以配置服务器端私有文件路径。配置的文件优先于对应的公开 URL；文件变量为空时保留 URL 设置。支持绝对路径；相对路径以服务器工作目录为基准（Docker 镜像中为 `/app`）。文件路径不会发送给浏览器。资源本身是公开的，登录前也可访问。
+
+```dotenv
+NUXT_BRAND_LOGO_LIGHT_FILE=/app/branding/logo-light.svg
+NUXT_BRAND_LOGO_DARK_FILE=/app/branding/logo-dark.svg
+NUXT_BRAND_FAVICON_FILE=/app/branding/favicon.ico
+```
+
+支持的扩展名：SVG、PNG、JPG/JPEG、WebP、GIF 和 ICO。文件必须是可读、非空的普通文件；无效配置会阻止服务器启动。文件在启动时加载：更改路径或文件内容后请重启。无需重新构建。
+
+对于 Docker Compose，创建覆盖文件 `compose.branding.yaml`：
+
+```yaml
+services:
+  frontend:
+    volumes:
+      - ./branding:/app/branding:ro
+    environment:
+      NUXT_BRAND_LOGO_LIGHT_FILE: /app/branding/logo-light.svg
+      NUXT_BRAND_LOGO_DARK_FILE: /app/branding/logo-dark.svg
+      NUXT_BRAND_FAVICON_FILE: /app/branding/favicon.ico
+```
+
+在主机的 `./branding` 中创建这三个文件，并允许容器的 `node` 用户读取。运行 `docker compose -f compose.yaml -f compose.branding.yaml up -d`。挂载为只读；配置的路径指向容器内的文件。这些私有文件变量适用于注册表 UI。
 
 Crateview 网站重复使用镜像仓库 UI 的标记、主题默认值和品牌变量名称。网站单独维护；它的源和部署配置是私有的。其文档来源在 [crateview/docs](https://github.com/crateview/docs).

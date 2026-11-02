@@ -1,6 +1,6 @@
 ---
-title: "برانڈنگ اور تھیمنگ"
-description: "Nuxt UI کے مقامی ڈیزائن سسٹم کو برقرار رکھتے ہوئے اپنی شناخت کا استعمال کریں۔"
+title: 'برانڈنگ اور تھیمنگ'
+description: 'Nuxt UI کے مقامی ڈیزائن سسٹم کو برقرار رکھتے ہوئے اپنی شناخت کا استعمال کریں۔'
 ---
 
 ![برانڈنگ اور تھیمنگ](https://crateview.de/images/docs/next/settings-light.webp)
@@ -49,5 +49,32 @@ NUXT_PUBLIC_BRAND_TITLE_TEMPLATE=%s · My Registry
 ```
 
 تعمیر کرنے سے پہلے مقامی اثاثوں کو `public/` میں رکھیں، یا HTTP(S) اثاثہ URLs کا استعمال کریں۔ موجودہ اختیاری پروڈکٹ، دستاویزات اور ریپوزٹری لنکس کو ان کے متعلقہ `NUXT_PUBLIC_BRAND_*_URL` متغیرات کے ذریعے ترتیب دیا جا سکتا ہے۔ عوامی ترتیب براؤزر میں نظر آتی ہے اور اس میں کبھی بھی راز نہیں ہونا چاہیے۔
+
+### دوبارہ بلڈ کیے بغیر سرور کی فائلیں
+
+آپ سرور پر نجی فائلوں کے راستے بھی ترتیب دے سکتے ہیں۔ ہر ترتیب دی گئی فائل کو متعلقہ عوامی URL پر ترجیح حاصل ہے؛ فائل کا متغیر خالی ہو تو URL کی ترتیب برقرار رہتی ہے۔ مطلق راستے معاون ہیں؛ نسبتی راستے سرور کی ورکنگ ڈائریکٹری (Docker امیج میں `/app`) سے طے ہوتے ہیں۔ فائلوں کے راستے کبھی براؤزر کو نہیں بھیجے جاتے۔ اثاثے خود عوامی ہیں، سائن ان سے پہلے بھی۔
+
+```dotenv
+NUXT_BRAND_LOGO_LIGHT_FILE=/app/branding/logo-light.svg
+NUXT_BRAND_LOGO_DARK_FILE=/app/branding/logo-dark.svg
+NUXT_BRAND_FAVICON_FILE=/app/branding/favicon.ico
+```
+
+معاون ایکسٹینشن: SVG، PNG، JPG/JPEG، WebP، GIF اور ICO۔ فائلیں عام، قابل مطالعہ اور غیر خالی ہونی چاہئیں؛ غلط ترتیبات سرور کو شروع ہونے سے روکتی ہیں۔ فائلیں آغاز پر لوڈ ہوتی ہیں: راستے یا مواد بدلنے کے بعد دوبارہ شروع کریں۔ دوبارہ بلڈ کی ضرورت نہیں۔
+
+Docker Compose کے لیے `compose.branding.yaml` اووررائیڈ فائل بنائیں:
+
+```yaml
+services:
+  frontend:
+    volumes:
+      - ./branding:/app/branding:ro
+    environment:
+      NUXT_BRAND_LOGO_LIGHT_FILE: /app/branding/logo-light.svg
+      NUXT_BRAND_LOGO_DARK_FILE: /app/branding/logo-dark.svg
+      NUXT_BRAND_FAVICON_FILE: /app/branding/favicon.ico
+```
+
+ہوسٹ پر `./branding` میں تینوں فائلیں بنائیں اور کنٹینر کے `node` صارف کو انہیں پڑھنے کی اجازت دیں۔ `docker compose -f compose.yaml -f compose.branding.yaml up -d` چلائیں۔ ماؤنٹ صرف پڑھنے کے لیے ہے؛ ترتیب دیے گئے راستے کنٹینر کے اندر کی فائلوں کے ہیں۔ یہ نجی فائل متغیرات رجسٹری UI پر لاگو ہوتے ہیں۔
 
 Crateview ویب سائٹ رجسٹری UI کے نشان، تھیم ڈیفالٹس اور برانڈنگ متغیر ناموں کو دوبارہ استعمال کرتی ہے۔ ویب سائٹ کو الگ سے رکھا جاتا ہے۔ اس کا ماخذ اور تعیناتی کی ترتیب نجی ہے۔ اس کے دستاویزات کے ذرائع [crateview/docs](https://github.com/crateview/docs) میں عوامی ہیں۔

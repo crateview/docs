@@ -1,6 +1,6 @@
 ---
-title: "العلامات التجارية والموضوعات"
-description: "استخدم هويتك الخاصة مع الحفاظ على نظام التصميم الأصلي لـ Nuxt UI."
+title: 'العلامات التجارية والموضوعات'
+description: 'استخدم هويتك الخاصة مع الحفاظ على نظام التصميم الأصلي لـ Nuxt UI.'
 ---
 
 ![العلامات التجارية والموضوعات](https://crateview.de/images/docs/next/settings-light.webp)
@@ -49,5 +49,32 @@ NUXT_PUBLIC_BRAND_TITLE_TEMPLATE=%s · My Registry
 ```
 
 ضع الأصول المحلية في `public/` قبل إنشاء عناوين URL لأصول HTTP(S) أو استخدمها. يمكن تكوين روابط المنتج والوثائق والمستودع الاختيارية الحالية من خلال متغيرات `NUXT_PUBLIC_BRAND_*_URL` المقابلة لها. يكون التكوين العام مرئيًا في المتصفح ويجب ألا يحتوي أبدًا على أسرار.
+
+### ملفات الخادم دون إعادة البناء
+
+يمكنك أيضًا ضبط مسارات ملفات خاصة على الخادم. يتقدم كل ملف مضبوط على عنوان URL العام المقابل له؛ وإبقاء متغير الملف فارغًا يحافظ على إعداد URL. تُدعم المسارات المطلقة؛ وتُحل المسارات النسبية انطلاقًا من مجلد عمل الخادم (`/app` في صورة Docker). لا تُرسل مسارات الملفات إلى المتصفح. الأصول نفسها عامة، حتى قبل تسجيل الدخول.
+
+```dotenv
+NUXT_BRAND_LOGO_LIGHT_FILE=/app/branding/logo-light.svg
+NUXT_BRAND_LOGO_DARK_FILE=/app/branding/logo-dark.svg
+NUXT_BRAND_FAVICON_FILE=/app/branding/favicon.ico
+```
+
+الامتدادات المدعومة: SVG وPNG وJPG/JPEG وWebP وGIF وICO. يجب أن تكون الملفات عادية وقابلة للقراءة وغير فارغة؛ وتمنع الإعدادات غير الصالحة بدء الخادم. تُحمّل الملفات عند البدء: أعد التشغيل بعد تغيير المسارات أو محتويات الملفات. لا حاجة لإعادة البناء.
+
+لاستخدام Docker Compose، أنشئ ملف التجاوز `compose.branding.yaml`:
+
+```yaml
+services:
+  frontend:
+    volumes:
+      - ./branding:/app/branding:ro
+    environment:
+      NUXT_BRAND_LOGO_LIGHT_FILE: /app/branding/logo-light.svg
+      NUXT_BRAND_LOGO_DARK_FILE: /app/branding/logo-dark.svg
+      NUXT_BRAND_FAVICON_FILE: /app/branding/favicon.ico
+```
+
+أنشئ الملفات الثلاثة في `./branding` على المضيف واسمح لمستخدم الحاوية `node` بقراءتها. شغّل `docker compose -f compose.yaml -f compose.branding.yaml up -d`. الربط للقراءة فقط؛ وتشير المسارات المضبوطة إلى ملفات داخل الحاوية. تنطبق متغيرات الملفات الخاصة هذه على واجهة السجل.
 
 يعيد موقع الويب Crateview استخدام علامة واجهة مستخدم التسجيل والإعدادات الافتراضية للموضوع وأسماء متغيرات العلامة التجارية. تتم صيانة الموقع بشكل منفصل؛ مصدره وتكوين النشر خاصان. مصادر التوثيق الخاصة به متاحة للعامة في [crateview/docs](https://github.com/crateview/docs).
