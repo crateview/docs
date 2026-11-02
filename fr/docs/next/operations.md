@@ -39,6 +39,7 @@ Sauvegardez votre stockage de registre et sa configuration à l'aide d'une méth
 
 ## Mettre à jour Crateview
 
+<!-- release:operations:start -->
 Construisez les conteneurs d'aperçu depuis la révision fixée ; aucune image d'aperçu publiée n'est supposée.
 
 ```sh
@@ -47,6 +48,7 @@ cd registry-ui
 git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
 docker compose -f compose.yaml -f compose.build.yaml up --build -d
 ```
+<!-- release:operations:end -->
 
 ## Grands registres
 

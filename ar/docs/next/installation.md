@@ -5,6 +5,7 @@ description: "ابدأ تشغيل المكدس الكامل أو قم بتوصي
 
 استخدم مراجعة هذا الإصدار ولا تستنسخ الفرع الافتراضي لتثبيت مؤرشف.
 
+<!-- release:installation:start -->
 ابن حاويات المعاينة محلياً من المراجعة المحددة أولاً؛ لا يُفترض وجود صورة معاينة منشورة.
 
 ```sh
@@ -13,6 +14,7 @@ cd registry-ui
 git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
 docker build -t crateview-registry-ui:next .
 ```
+<!-- release:installation:end -->
 
 
 ## متطلبات

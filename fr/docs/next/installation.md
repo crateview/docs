@@ -5,6 +5,7 @@ description: "Démarrez la pile complète ou connectez l'interface utilisateur �
 
 Utilisez la révision de cette version, pas la branche par défaut pour une installation archivée.
 
+<!-- release:installation:start -->
 Construisez les conteneurs d'aperçu depuis la révision fixée ; aucune image d'aperçu publiée n'est supposée.
 
 ```sh
@@ -13,6 +14,7 @@ cd registry-ui
 git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
 docker build -t crateview-registry-ui:next .
 ```
+<!-- release:installation:end -->
 
 
 ## Exigences

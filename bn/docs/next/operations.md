@@ -39,6 +39,7 @@ Distribution এছাড়াও `REGISTRY_STORAGE_DELETE_ENABLED=true` পড
 
 ## Crateview আপডেট করুন
 
+<!-- release:operations:start -->
 প্রাকদর্শন কন্টেনার আগে নির্দিষ্ট সোর্স থেকে স্থানীয়ভাবে তৈরি করুন; প্রকাশিত ইমেজ ধরে নেবেন না।
 
 ```sh
@@ -47,6 +48,7 @@ cd registry-ui
 git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
 docker compose -f compose.yaml -f compose.build.yaml up --build -d
 ```
+<!-- release:operations:end -->
 
 ## বড় রেজিস্ট্রি
 

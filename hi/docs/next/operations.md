@@ -39,6 +39,7 @@ Distribution `REGISTRY_STORAGE_DELETE_ENABLED=true` भी पढ़ सकत�
 
 ## Crateview को अपडेट करें
 
+<!-- release:operations:start -->
 पूर्वावलोकन कंटेनर पहले निश्चित स्रोत से स्थानीय बनाएँ; प्रकाशित इमेज न मानें।
 
 ```sh
@@ -47,6 +48,7 @@ cd registry-ui
 git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
 docker compose -f compose.yaml -f compose.build.yaml up --build -d
 ```
+<!-- release:operations:end -->
 
 ## बड़ी रजिस्ट्रियां
 

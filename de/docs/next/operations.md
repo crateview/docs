@@ -39,6 +39,7 @@ Sichere Registry-Daten und Konfiguration mit einem zum Storage-Treiber passenden
 
 ## Crateview aktualisieren
 
+<!-- release:operations:start -->
 Vorschau-Container zuerst lokal aus der festgelegten Quellrevision bauen; ein veröffentlichtes Vorschau-Image wird nicht vorausgesetzt.
 
 ```sh
@@ -47,6 +48,7 @@ cd registry-ui
 git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
 docker compose -f compose.yaml -f compose.build.yaml up --build -d
 ```
+<!-- release:operations:end -->
 
 ## Große Registries
 

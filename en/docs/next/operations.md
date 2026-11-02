@@ -39,6 +39,7 @@ Back up your registry storage and its configuration using a method appropriate t
 
 ## Update Crateview
 
+<!-- release:operations:start -->
 Preview containers must first be built locally from the pinned source revision; no released preview image is implied.
 
 ```sh
@@ -47,6 +48,7 @@ cd registry-ui
 git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
 docker compose -f compose.yaml -f compose.build.yaml up --build -d
 ```
+<!-- release:operations:end -->
 
 ## Large registries
 

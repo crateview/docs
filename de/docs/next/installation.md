@@ -5,6 +5,7 @@ description: "Den kompletten Stack starten oder das UI mit einer vorhandenen Reg
 
 Beispiele gehören zur Quellrevision dieser Version; für Archive nicht den Standardbranch klonen.
 
+<!-- release:installation:start -->
 Vorschau-Container zuerst lokal aus der festgelegten Quellrevision bauen; ein veröffentlichtes Vorschau-Image wird nicht vorausgesetzt.
 
 ```sh
@@ -13,6 +14,7 @@ cd registry-ui
 git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
 docker build -t crateview-registry-ui:next .
 ```
+<!-- release:installation:end -->
 
 
 ## Voraussetzungen

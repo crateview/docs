@@ -39,6 +39,7 @@ storage:
 
 ## تحديث Crateview
 
+<!-- release:operations:start -->
 ابن حاويات المعاينة محلياً من المراجعة المحددة أولاً؛ لا يُفترض وجود صورة معاينة منشورة.
 
 ```sh
@@ -47,6 +48,7 @@ cd registry-ui
 git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
 docker compose -f compose.yaml -f compose.build.yaml up --build -d
 ```
+<!-- release:operations:end -->
 
 ## سجلات كبيرة
 

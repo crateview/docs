@@ -4,7 +4,7 @@ Public documentation sources for [Crateview](https://crateview.de).
 
 - Stable: [English](https://crateview.de/docs/v0.5/overview), [Deutsch](https://crateview.de/de/docs/v0.5/overview).
 - Archived minors: `v0.1` (0.1.2), `v0.2` (0.2.1), `v0.3` (0.3.0), `v0.4` (0.4.0).
-- Unreleased preview: `next`; exact source revisions and page lists live in `versions.json`.
+- Internal unreleased source: `next`; exact source revisions and page lists live in `versions.json`.
 - All six versions support English, German, Simplified Chinese, Hindi, Spanish, Arabic, French, Bengali, Brazilian Portuguese, Indonesian, Urdu, Russian and Japanese.
 
 ## Editing
@@ -48,12 +48,40 @@ version/locale combination, localized links, source revisions and image referenc
 ## Publishing
 
 The private website includes this repository as its `content/` Git submodule.
-Commit and push reviewed docs, then update the website's pinned submodule commit,
-matching versioned captures and changeset. The website release publishes that exact
-revision. Old unversioned URLs redirect temporarily to the selected stable version.
-Preview is labeled and excluded from search-engine indexing; on-site search stays
-inside the selected version and language.
+For manual corrections, commit and push reviewed docs, then update the website's
+pinned submodule commit, matching versioned captures and changeset. The website
+release publishes that exact revision. Routine registry releases use automatic
+promotion below. Old unversioned URLs redirect temporarily to the selected stable version.
+Internal next pages are not published; on-site search stays
+inside the selected released version and language.
 
 This repository contains documentation only. Website source, builds and container
 image remain private. Registry UI source is public at
 [crateview/registry-ui](https://github.com/crateview/registry-ui).
+
+## Automatic release promotion
+
+`next` is an internal editorial source, not a public preview. Keep all 13 locales
+current before publishing a registry UI release. The website returns 404 for next
+routes and excludes next from its content index and published screenshot assets.
+
+The registry UI release workflow pins this repository's main commit in its
+`docs-promotion.json` release asset. The website promotes that immutable snapshot
+to `v<major>.<minor>`; patches update the existing minor. Older minor archives are
+retained. Changes committed after the request was created belong to a future
+release, even when a promotion is retried.
+
+Installation and operations pages contain explicit `release:<slug>:start/end`
+HTML comment markers. The promotion replaces only those sections with the matching
+`release-templates/<locale>/<slug>.md` fragment. An empty installation fragment
+removes the local preview-build introduction. Operations fragments use
+`{{RELEASE_TAG}}` for the published version. Preserve markers and update localized
+fragments when release instructions change. Other next links, the recorded source
+revision, and the exact local preview image reference are converted structurally.
+
+Each manifest entry declares `captures` capabilities (`overviewRoute`, `monitoring`,
+`accounts`, `userActions`). Keep next capabilities aligned with the upcoming UI.
+The website takes fresh screenshots from the released registry source revision;
+existing next captures are not relabeled as release captures. Failed validation
+or screenshots stop publication. Website automation setup and recovery are
+documented in the website repository. Production server deployment remains manual.

@@ -5,6 +5,7 @@ description: "启动完整的堆栈或将 UI 连接到现有镜像仓库。"
 
 示例应匹配此版本源码；安装归档版本时不要克隆默认分支。
 
+<!-- release:installation:start -->
 预览容器需先从固定源码修订本地构建，不假定存在已发布预览镜像。
 
 ```sh
@@ -13,6 +14,7 @@ cd registry-ui
 git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
 docker build -t crateview-registry-ui:next .
 ```
+<!-- release:installation:end -->
 
 
 ## 要求

@@ -5,6 +5,7 @@ description: "完全なスタックを開始するか、UI を既存のレジス
 
 この版のソースを使ってください。アーカイブ版で標準ブランチをクローンしないでください。
 
+<!-- release:installation:start -->
 プレビューコンテナは固定ソースからローカルビルドします。公開済みプレビューイメージは前提にしません。
 
 ```sh
@@ -13,6 +14,7 @@ cd registry-ui
 git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
 docker build -t crateview-registry-ui:next .
 ```
+<!-- release:installation:end -->
 
 
 ## 要件

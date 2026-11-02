@@ -5,6 +5,7 @@ description: "Inicie a pilha completa ou conecte a UI a um registro existente."
 
 Use a revisão desta versão; não clone a branch padrão para uma instalação arquivada.
 
+<!-- release:installation:start -->
 Compile contêineres de prévia localmente da revisão fixada; não se presume imagem publicada.
 
 ```sh
@@ -13,6 +14,7 @@ cd registry-ui
 git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
 docker build -t crateview-registry-ui:next .
 ```
+<!-- release:installation:end -->
 
 
 ## Requisitos

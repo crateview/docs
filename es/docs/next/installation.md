@@ -5,6 +5,7 @@ description: "Inicie la pila completa o conecte la interfaz de usuario a un regi
 
 Usa la revisión de esta versión; no clones la rama predeterminada para una instalación archivada.
 
+<!-- release:installation:start -->
 Construye primero los contenedores de vista previa desde la revisión fijada; no se presupone una imagen publicada.
 
 ```sh
@@ -13,6 +14,7 @@ cd registry-ui
 git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
 docker build -t crateview-registry-ui:next .
 ```
+<!-- release:installation:end -->
 
 
 ## Requisitos
