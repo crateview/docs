@@ -48,4 +48,4 @@ NUXT_PUBLIC_BRAND_TITLE_TEMPLATE=%s · My Registry
 
 在构建之前将本地资源放置在 `public/` 中，或使用 HTTP(S) 资源 URL。现有的可选产品、文档和存储库链接可以通过其相应的 `NUXT_PUBLIC_BRAND_*_URL` 变量进行配置。公共配置在浏览器中可见，并且绝不能包含机密。
 
-Crateview 网站重复使用注册表 UI 的标记、主题默认值和品牌变量名称。网站单独维护；它的源和部署配置是私有的。其文档来源在 [crateview/docs](https://github.com/crateview/docs).
+Crateview 网站重复使用镜像仓库 UI 的标记、主题默认值和品牌变量名称。网站单独维护；它的源和部署配置是私有的。其文档来源在 [crateview/docs](https://github.com/crateview/docs).

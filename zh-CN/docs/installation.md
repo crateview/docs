@@ -1,11 +1,11 @@
 ---
 title: "安装"
-description: "启动完整的堆栈或将 UI 连接到现有注册表。"
+description: "启动完整的堆栈或将 UI 连接到现有镜像仓库。"
 ---
 
 ## 要求
 
-使用 Node.js 24.22.2 或 v24 中的更高版本进行本地开发，或使用 Docker 和 Compose 进行完整堆栈。现有注册表必须公开注册表 HTTP API V2；捆绑的堆栈使用官方 `registry:3.1.2` 映像。
+使用 Node.js 24.22.2 或 v24 中的更高版本进行本地开发，或使用 Docker 和 Compose 进行完整堆栈。现有镜像仓库必须公开镜像仓库 HTTP API V2；捆绑的堆栈使用官方 `registry:3.1.2` 映像。
 
 ## Docker Compose 示例
 
@@ -19,9 +19,9 @@ openssl rand -base64 32
 
 保持该密钥稳定并保护`.env`；不要将其提交给版本控制。已发布的 Crateview 映像支持 Linux amd64。
 
-### 具有现有注册表的 UI
+### 具有现有镜像仓库的 UI
 
-需要可从容器访问的注册表 HTTP API V2 端点。示例 `.env`（替换地址；不在 URL 中包含凭据）：
+需要可从容器访问的镜像仓库 HTTP API V2 端点。示例 `.env`（替换地址；不在 URL 中包含凭据）：
 
 ```dotenv
 NUXT_REGISTRY_UPSTREAM=https://registry.example.com
@@ -48,9 +48,9 @@ docker compose up -d
 
 Open **http://localhost:3000**. `127.0.0.1` 的上游指的是容器本身。使用共享 Docker 网络上可访问的 DNS 名称或服务地址。
 
-### 具有自己的注册表的 UI
+### 具有自己的镜像仓库的 UI
 
-无需身份验证的本地堆栈。仅 UI 端口在环回上发布；注册表保留在 Docker 网络上。 `.env`：
+无需身份验证的本地堆栈。仅 UI 端口在环回上发布；镜像仓库保留在 Docker 网络上。 `.env`：
 
 ```dotenv
 NUXT_SESSION_PASSWORD=REPLACE_WITH_GENERATED_SECRET
@@ -87,7 +87,7 @@ docker compose pull
 docker compose up -d
 ```
 
-打开 **http://localhost:3000**. 注册表数据保留在 `registry-data` 卷中。 Push 和 pull 的图像经过相同的原点：
+打开 **http://localhost:3000**. 镜像仓库数据保留在 `registry-data` 卷中。 Push 和 pull 的图像经过相同的原点：
 
 ```sh
 docker pull alpine:latest
@@ -96,7 +96,7 @@ docker push localhost:3000/alpine:latest
 docker pull localhost:3000/alpine:latest
 ```
 
-### 使用 HTTPS 的 UI、注册表和 Traefik
+### 使用 HTTPS 的 UI、镜像仓库和 Traefik
 
 独立堆栈包括 Traefik 和 Let's Encrypt。需要可公开访问的服务器、可用且允许的 TCP 端口 80/443 以及 DNS 记录指向该服务器的域。对于 HTTP-01 质询，端口 80 必须保持可达。 `.env`：
 
@@ -177,9 +177,9 @@ docker compose pull
 docker compose up -d
 ```
 
-使用您的域打开 **https://registry.example.com** 并使用您创建的注册表用户登录。 Traefik自动获取证书并将HTTP重定向到HTTPS。证书保留在 `letsencrypt` 中，注册表数据保留在 `registry-data` 中。备份两个卷，并且不要使用 `docker compose down -v` 进行例行关闭。
+使用您的域打开 **https://registry.example.com** 并使用您创建的镜像仓库用户登录。 Traefik自动获取证书并将HTTP重定向到HTTPS。证书保留在 `letsencrypt` 中，镜像仓库数据保留在 `registry-data` 中。备份两个卷，并且不要使用 `docker compose down -v` 进行例行关闭。
 
-所有路径（包括 `/v2/`）均经过 Crateview。注册表和 UI 都不会发布自己的主机端口。注册表强制执行Basic Auth；不需要额外的 Traefik Basic Auth。 Traefik保留公共主机，并将HTTPS协议转发给Crateview。 Docker 插座使 Traefik 能够访问 Docker API；在受信任的主机上运行此堆栈。
+所有路径（包括 `/v2/`）均经过 Crateview。镜像仓库和 UI 都不会发布自己的主机端口。镜像仓库强制执行Basic Auth；不需要额外的 Traefik Basic Auth。 Traefik保留公共主机，并将HTTPS协议转发给Crateview。 Docker 插座使 Traefik 能够访问 Docker API；在受信任的主机上运行此堆栈。
 
 CLI登录和图像传输（替换域）：
 
@@ -193,7 +193,7 @@ docker pull registry.example.com/alpine:latest
 
 CLI 与 UI 登录分开提示输入密码。有关详细信息，请参阅[authentication](/zh-CN/docs/authentication) 和 [Traefik with Docker 和 Let’s Encrypt](https://doc.traefik.io/traefik/setup/docker/#tls-certificate-management-lets-encrypt)]。
 
-## 使用现有注册表
+## 使用现有镜像仓库
 
 ```sh
 git clone https://github.com/crateview/registry-ui.git
@@ -223,7 +223,7 @@ NUXT_REGISTRY_UPSTREAM=http://127.0.0.1:5000 HOST=127.0.0.1 PORT=3000 npm start
 
 生产节点进程读取实际环境变量，而不是自动读取 `.env`。相应地配置您的流程管理器或容器环境。为远程身份验证使用提供 HTTPS。
 
-Crateview 需要其 Nitro 服务器进行身份验证和 API 代理。仅将前端文件作为静态网站提供服务将不会提供有效的注册表 UI。
+Crateview 需要其 Nitro 服务器进行身份验证和 API 代理。仅将前端文件作为静态网站提供服务将不会提供有效的镜像仓库 UI。
 
 在将服务公开到您自己的计算机之外之前，请继续 [configuration](/zh-CN/docs/configuration)]。
 
