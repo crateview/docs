@@ -32,7 +32,7 @@ The frontend reads the standard Registry HTTP API V2. UI metadata is derived fro
 - OCI referrers, including the standard digest-tag index fallback maintained by OCI clients.
 - Anonymous access and native htpasswd Basic Auth.
 - Optional manifest deletion, with affected tags shown before confirmation.
-- English/German, System/Light/Dark, and configurable branding.
+- 13 interface languages, System/Light/Dark, and configurable branding.
 
 ## Know the boundaries
 

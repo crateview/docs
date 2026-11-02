@@ -32,7 +32,7 @@ Das Frontend verwendet die standardisierte Registry HTTP API V2. Metadaten für 
 - OCI-Referrer einschließlich des standardisierten Digest-Tag-Index-Fallbacks, den OCI-Clients pflegen.
 - Anonymer Zugriff und native htpasswd Basic Auth.
 - Optionale Manifest-Löschung mit Anzeige aller betroffenen Tags.
-- Deutsch/Englisch, System/Hell/Dunkel und anpassbares Branding.
+- 13 Oberflächensprachen, System/Hell/Dunkel und anpassbares Branding.
 
 ## Grenzen kennen
 
