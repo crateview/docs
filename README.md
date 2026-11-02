@@ -4,7 +4,7 @@ Public documentation sources for [Crateview](https://crateview.de).
 
 - Stable: [English](https://crateview.de/docs/v0.5/overview), [Deutsch](https://crateview.de/de/docs/v0.5/overview).
 - Archived minors: `v0.1` (0.1.2), `v0.2` (0.2.1), `v0.3` (0.3.0), `v0.4` (0.4.0).
-- Unreleased preview: `next`; exact source revisions and page lists live in `versions.json`.
+- Internal unreleased source: `next`; exact source revisions and page lists live in `versions.json`.
 - All six versions support English, German, Simplified Chinese, Hindi, Spanish, Arabic, French, Bengali, Brazilian Portuguese, Indonesian, Urdu, Russian and Japanese.
 
 ## Editing
@@ -48,11 +48,12 @@ version/locale combination, localized links, source revisions and image referenc
 ## Publishing
 
 The private website includes this repository as its `content/` Git submodule.
-Commit and push reviewed docs, then update the website's pinned submodule commit,
-matching versioned captures and changeset. The website release publishes that exact
-revision. Old unversioned URLs redirect temporarily to the selected stable version.
-Preview is labeled and excluded from search-engine indexing; on-site search stays
-inside the selected version and language.
+For manual corrections, commit and push reviewed docs, then update the website's
+pinned submodule commit, matching versioned captures and changeset. The website
+release publishes that exact revision. Routine registry releases use automatic
+promotion below. Old unversioned URLs redirect temporarily to the selected stable version.
+Internal next pages are not published; on-site search stays
+inside the selected released version and language.
 
 This repository contains documentation only. Website source, builds and container
 image remain private. Registry UI source is public at
