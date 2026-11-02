@@ -44,7 +44,7 @@ Construisez les conteneurs d'aperçu depuis la révision fixée ; aucune image d
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout bef44098e9acfe2aaa39c0ba0bbaa768b7853241
+git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
 docker compose -f compose.yaml -f compose.build.yaml up --build -d
 ```
 

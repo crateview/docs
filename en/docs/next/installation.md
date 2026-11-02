@@ -10,7 +10,7 @@ Preview containers must first be built locally from the pinned source revision; 
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout bef44098e9acfe2aaa39c0ba0bbaa768b7853241
+git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
 docker build -t crateview-registry-ui:next .
 ```
 
@@ -207,7 +207,7 @@ The CLI prompts for the password separately from the UI login. See [authenticati
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout bef44098e9acfe2aaa39c0ba0bbaa768b7853241
+git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
 npm ci
 cp .env.example .env
 ```
@@ -244,6 +244,6 @@ For a local build, use the Compose files from the source repository:
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout bef44098e9acfe2aaa39c0ba0bbaa768b7853241
+git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
 docker compose -f compose.yaml -f compose.build.yaml up --build -d
 ```

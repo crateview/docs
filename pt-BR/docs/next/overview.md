@@ -42,4 +42,6 @@ O API padrão não fornece carimbos de data/hora push, estatísticas de download
 
 Administração agrupa Configurações e Usuários. O menu da conta também oferece idioma e tema. Conta altera sua senha com confirmação da atual. A lista do servidor controla listagem e criação de contas; concessões de token são somente leitura. Novas senhas exigem no mínimo 12 caracteres e no máximo 72 bytes UTF-8. Novas contas de token começam sem acesso a repositórios.
 
+A lista de permissões do servidor controla a listagem, criação, redefinição de senhas e exclusão de contas. O menu de três pontos alinhado à direita permite aos administradores redefinir a senha de outro usuário sem a senha antiga ou excluir sua conta após confirmação. A redefinição preserva as permissões dos repositórios; a exclusão as remove. Seu próprio menu abre Conta para alterar sua senha com a senha atual; a exclusão da própria conta é bloqueada.
+
 Comece com [instalação](/pt-BR/docs/next/installation) e, em seguida, revise [configuração](/pt-BR/docs/next/configuration) e [autenticação](/pt-BR/docs/next/authentication).

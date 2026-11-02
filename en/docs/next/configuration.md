@@ -68,3 +68,5 @@ Monitoring is optional and disabled by default. Overview opens the dashboard whe
 | `NUXT_USER_CREATION_ALLOWED_USERS` | — |
 
 Administration groups Settings and Users. The account menu also offers language and theme selection. Account changes your own password after confirming the current password. Users lists accounts and creates them only when the server allowlist permits it; token grants are read-only. New accounts require a password of at least 12 characters and at most 72 UTF-8 bytes. New token accounts start without repository access.
+
+The server allowlist controls listing, creation, password resets and account deletion. The right-aligned three-dot menu lets administrators reset another user's password without the old password or delete that account after confirmation. Resets preserve repository grants; deletion removes them. Your own menu opens Account for a password change with the current password; self-deletion is blocked.

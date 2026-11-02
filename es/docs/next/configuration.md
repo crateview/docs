@@ -68,3 +68,5 @@ La monitorización es opcional y está desactivada por defecto. Resumen abre el 
 | `NUXT_USER_CREATION_ALLOWED_USERS` | — |
 
 Administración agrupa Ajustes y Usuarios. El menú de cuenta también ofrece idioma y tema. Cuenta cambia tu contraseña previa confirmación de la actual. Usuarios solo permite listar y crear cuentas según la lista del servidor; los permisos de token son de solo lectura. Las contraseñas nuevas requieren 12 caracteres como mínimo y 72 bytes UTF-8 como máximo. Las cuentas de token nuevas no tienen acceso inicial.
+
+La lista de permisos del servidor controla la consulta, creación, restablecimiento de contraseñas y eliminación de cuentas. El menú de tres puntos alineado a la derecha permite a los administradores restablecer la contraseña de otro usuario sin la anterior o eliminar su cuenta tras confirmar. El restablecimiento conserva los permisos de los repositorios; la eliminación los retira. Tu propio menú abre Cuenta para cambiar la contraseña con la actual; no puedes eliminar tu propia cuenta.

@@ -68,3 +68,5 @@ Pemantauan opsional dan nonaktif secara default. Ringkasan membuka dasbor jika a
 | `NUXT_USER_CREATION_ALLOWED_USERS` | — |
 
 Administrasi mengelompokkan Pengaturan dan Pengguna. Menu akun juga menawarkan bahasa dan tema. Akun mengubah kata sandi sendiri setelah memverifikasi yang sekarang. Daftar izin server mengontrol daftar dan pembuatan akun; izin token hanya baca. Kata sandi baru minimal 12 karakter dan maksimal 72 byte UTF-8. Akun token baru belum memiliki akses repositori.
+
+Daftar izin server mengontrol daftar, pembuatan, pengaturan ulang kata sandi, dan penghapusan akun. Menu tiga titik di sebelah kanan memungkinkan administrator mengatur ulang kata sandi pengguna lain tanpa kata sandi lama atau menghapus akun tersebut setelah konfirmasi. Pengaturan ulang mempertahankan izin repositori; penghapusan menghapusnya. Menu akun Anda sendiri membuka Akun untuk mengubah kata sandi dengan kata sandi saat ini; penghapusan akun sendiri diblokir.

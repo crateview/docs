@@ -53,16 +53,24 @@ An independent auth/management service supports account creation and own-passwor
 
 - **Basic mode:** Distribution checks the shared htpasswd file; all users have equal registry access. Docker does not require the management service to run.
 - **Token mode:** The independent auth service issues signed five-minute tokens; Distribution enforces repository permissions. Docker requires the registry and auth service. New users initially have no repository access.
-- **UI:** Users change their own password by supplying the current password. `NUXT_USER_CREATION_ALLOWED_USERS` defaults to empty; `alice,bob` allows only those users to create accounts, `*` allows every authenticated user. This policy is enforced server-side.
+- **UI:** The server allowlist controls listing, creation, password resets and account deletion. `NUXT_USER_CREATION_ALLOWED_USERS`: `alice,bob`; `*`. Empty denies administration; listed names are allowed, and the wildcard allows every authenticated user.
 - **Permissions:** CLI grants target exact repositories, namespaces (`team/*`) or everything (`*`); profiles are `reader` (pull), `writer` (pull/push), and `manager` (pull/push/delete). Basic mode has no registry roles.
 
-Explicitly enable `NUXT_AUTH_MODE=htpasswd` or `token` and configure the internal `NUXT_AUTH_SERVICE_URL` and server-only `NUXT_AUTH_SERVICE_SECRET`. Token mode additionally requires `NUXT_AUTH_TOKEN_REALM` to match the public token endpoint exactly. Anonymous registries and external token services do not support local account management. Permissions and administrative password resets use the auth CLI; the UI cannot change other users' passwords or assign permissions.
+Explicitly enable `NUXT_AUTH_MODE=htpasswd` or `token` and configure the internal `NUXT_AUTH_SERVICE_URL` and server-only `NUXT_AUTH_SERVICE_SECRET`. Token mode additionally requires `NUXT_AUTH_TOKEN_REALM` to match the public token endpoint exactly. Anonymous registries and external token services do not support local account management. Repository grants are managed through the auth CLI; the UI displays them read-only.
 
-See the [account service guide](https://github.com/crateview/registry-ui/blob/bef44098e9acfe2aaa39c0ba0bbaa768b7853241/auth/README.md) for Compose overlays, setup, migration and CLI commands. Route public Docker access directly to the registry independently of the UI. Previously issued tokens remain valid for up to five minutes after password changes or permission revocation.
+See the [account service guide](https://github.com/crateview/registry-ui/blob/3844d7605dac80d0d58999201c43e94c644d72c0/auth/README.md) for Compose overlays, setup, migration and CLI commands. Route public Docker access directly to the registry independently of the UI. Previously issued tokens remain valid for up to five minutes after password changes or permission revocation.
 
 Administration groups Settings and Users. The account menu also offers language and theme selection. Account changes your own password after confirming the current password. Users lists accounts and creates them only when the server allowlist permits it; token grants are read-only. New accounts require a password of at least 12 characters and at most 72 UTF-8 bytes. New token accounts start without repository access.
 
+The server allowlist controls listing, creation, password resets and account deletion. The right-aligned three-dot menu lets administrators reset another user's password without the old password or delete that account after confirmation. Resets preserve repository grants; deletion removes them. Your own menu opens Account for a password change with the current password; self-deletion is blocked.
+
 ![Documentation version](https://crateview.de/images/docs/next/users-light.webp)
+
+![Actions](https://crateview.de/images/docs/next/user-actions-light.webp)
+
+![Change password](https://crateview.de/images/docs/next/user-password-light.webp)
+
+![Delete user](https://crateview.de/images/docs/next/user-delete-light.webp)
 
 ```dotenv
 NUXT_AUTH_MODE=htpasswd

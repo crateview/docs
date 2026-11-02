@@ -10,7 +10,7 @@ description: "ابدأ تشغيل المكدس الكامل أو قم بتوصي
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout bef44098e9acfe2aaa39c0ba0bbaa768b7853241
+git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
 docker build -t crateview-registry-ui:next .
 ```
 
@@ -207,7 +207,7 @@ docker pull registry.example.com/alpine:latest
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout bef44098e9acfe2aaa39c0ba0bbaa768b7853241
+git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
 npm ci
 cp .env.example .env
 ```
@@ -244,6 +244,6 @@ NUXT_REGISTRY_UPSTREAM=http://127.0.0.1:5000 HOST=127.0.0.1 PORT=3000 npm start
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout bef44098e9acfe2aaa39c0ba0bbaa768b7853241
+git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
 docker compose -f compose.yaml -f compose.build.yaml up --build -d
 ```

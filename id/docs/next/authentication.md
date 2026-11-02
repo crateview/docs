@@ -53,16 +53,24 @@ Layanan auth/manajemen independen mendukung pembuatan akun dan perubahan kata sa
 
 - **Mode dasar:** Distribution memeriksa file htpasswd yang dibagikan; semua pengguna memiliki akses registri yang sama. Docker tidak memerlukan layanan manajemen untuk dijalankan.
 - **Mode Token:** Layanan independen auth mengeluarkan token lima menit yang ditandatangani; Distribution menerapkan izin repositori. Docker memerlukan registri dan layanan auth. Pengguna baru awalnya tidak memiliki akses repositori.
-- **UI:** Pengguna mengubah kata sandi mereka sendiri dengan memberikan kata sandi saat ini. `NUXT_USER_CREATION_ALLOWED_USERS` defaultnya kosong; `alice,bob` hanya mengizinkan pengguna tersebut untuk membuat akun, `*` mengizinkan setiap pengguna yang diautentikasi. Kebijakan ini diterapkan di sisi server.
+- **UI:** Daftar izin server mengontrol daftar, pembuatan, pengaturan ulang kata sandi, dan penghapusan akun. `NUXT_USER_CREATION_ALLOWED_USERS`: `alice,bob`; `*`. Nilai kosong menolak administrasi; nama yang tercantum diizinkan, dan karakter pengganti mengizinkan semua pengguna yang diautentikasi.
 - **Izin:** CLI memberikan target repositori yang tepat, namespace (`team/*`) atau semuanya (`*`); profilnya adalah `reader` (pull), `writer` (pull/push), dan `manager` (pull/push/hapus). Mode dasar tidak memiliki peran registri.
 
-Aktifkan `NUXT_AUTH_MODE=htpasswd` atau `token` secara eksplisit dan konfigurasikan `NUXT_AUTH_SERVICE_URL` internal dan `NUXT_AUTH_SERVICE_SECRET` khusus server. Mode token juga memerlukan `NUXT_AUTH_TOKEN_REALM` agar sama persis dengan titik akhir token publik. Registri anonim dan layanan token eksternal tidak mendukung pengelolaan akun lokal. Izin dan pengaturan ulang kata sandi administratif menggunakan auth CLI; UI tidak dapat mengubah kata sandi pengguna lain atau memberikan izin.
+Aktifkan `NUXT_AUTH_MODE=htpasswd` atau `token` secara eksplisit dan konfigurasikan `NUXT_AUTH_SERVICE_URL` internal dan `NUXT_AUTH_SERVICE_SECRET` khusus server. Mode token juga memerlukan `NUXT_AUTH_TOKEN_REALM` agar sama persis dengan titik akhir token publik. Registri anonim dan layanan token eksternal tidak mendukung pengelolaan akun lokal. Izin repositori dikelola melalui CLI autentikasi; UI menampilkannya sebagai hanya baca.
 
-Lihat [panduan layanan akun](https://github.com/crateview/registry-ui/blob/bef44098e9acfe2aaa39c0ba0bbaa768b7853241/auth/README.md) untuk perintah Compose overlay, setup, migrasi, dan CLI. Rutekan akses publik Docker langsung ke registri secara independen dari UI. Token yang dikeluarkan sebelumnya tetap valid hingga lima menit setelah perubahan kata sandi atau pencabutan izin.
+Lihat [panduan layanan akun](https://github.com/crateview/registry-ui/blob/3844d7605dac80d0d58999201c43e94c644d72c0/auth/README.md) untuk perintah Compose overlay, setup, migrasi, dan CLI. Rutekan akses publik Docker langsung ke registri secara independen dari UI. Token yang dikeluarkan sebelumnya tetap valid hingga lima menit setelah perubahan kata sandi atau pencabutan izin.
 
 Administrasi mengelompokkan Pengaturan dan Pengguna. Menu akun juga menawarkan bahasa dan tema. Akun mengubah kata sandi sendiri setelah memverifikasi yang sekarang. Daftar izin server mengontrol daftar dan pembuatan akun; izin token hanya baca. Kata sandi baru minimal 12 karakter dan maksimal 72 byte UTF-8. Akun token baru belum memiliki akses repositori.
 
+Daftar izin server mengontrol daftar, pembuatan, pengaturan ulang kata sandi, dan penghapusan akun. Menu tiga titik di sebelah kanan memungkinkan administrator mengatur ulang kata sandi pengguna lain tanpa kata sandi lama atau menghapus akun tersebut setelah konfirmasi. Pengaturan ulang mempertahankan izin repositori; penghapusan menghapusnya. Menu akun Anda sendiri membuka Akun untuk mengubah kata sandi dengan kata sandi saat ini; penghapusan akun sendiri diblokir.
+
 ![Versi dokumentasi](https://crateview.de/images/docs/next/users-light.webp)
+
+![Tindakan](https://crateview.de/images/docs/next/user-actions-light.webp)
+
+![Ubah kata sandi](https://crateview.de/images/docs/next/user-password-light.webp)
+
+![Hapus pengguna](https://crateview.de/images/docs/next/user-delete-light.webp)
 
 ```dotenv
 NUXT_AUTH_MODE=htpasswd

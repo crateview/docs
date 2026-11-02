@@ -10,7 +10,7 @@ description: "完全なスタックを開始するか、UI を既存のレジス
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout bef44098e9acfe2aaa39c0ba0bbaa768b7853241
+git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
 docker build -t crateview-registry-ui:next .
 ```
 
@@ -207,7 +207,7 @@ CLI は、UI ログインとは別にパスワードの入力を求めます。�
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout bef44098e9acfe2aaa39c0ba0bbaa768b7853241
+git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
 npm ci
 cp .env.example .env
 ```
@@ -244,6 +244,6 @@ Crateview は、認証と API プロキシのために Nitro サーバーを必�
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout bef44098e9acfe2aaa39c0ba0bbaa768b7853241
+git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
 docker compose -f compose.yaml -f compose.build.yaml up --build -d
 ```

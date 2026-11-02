@@ -68,3 +68,5 @@ La supervision est facultative et désactivée par défaut. La vue d'ensemble af
 | `NUXT_USER_CREATION_ALLOWED_USERS` | — |
 
 Administration regroupe Paramètres et Utilisateurs. Le menu du compte propose aussi langue et thème. Compte modifie votre mot de passe après vérification de l'actuel. La liste serveur contrôle consultation et création des comptes ; les droits des jetons sont en lecture seule. Un nouveau mot de passe exige au moins 12 caractères et au plus 72 octets UTF-8. Les nouveaux comptes à jetons n'ont aucun accès initial aux dépôts.
+
+La liste d’autorisation du serveur contrôle la consultation, la création, la réinitialisation des mots de passe et la suppression des comptes. Le menu à trois points aligné à droite permet aux administrateurs de réinitialiser le mot de passe d’un autre utilisateur sans son ancien mot de passe ou de supprimer son compte après confirmation. La réinitialisation conserve les droits sur les dépôts ; la suppression les retire. Votre propre menu ouvre Compte pour changer votre mot de passe avec le mot de passe actuel ; la suppression de votre propre compte est bloquée.

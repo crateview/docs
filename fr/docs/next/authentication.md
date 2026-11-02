@@ -53,16 +53,24 @@ Un service d'authentification/gestion indépendant prend en charge la création 
 
 - **Mode de base :** Distribution vérifie le fichier htpasswd partagé ; tous les utilisateurs ont un accès égal au registre. Docker ne nécessite pas l'exécution du service de gestion.
 - **Mode jeton :** Le service indépendant auth émet des jetons signés de cinq minutes ; Distribution applique les autorisations du référentiel. Docker nécessite le registre et le service auth. Les nouveaux utilisateurs n'ont initialement aucun accès au référentiel.
-- **UI :** Les utilisateurs modifient leur propre mot de passe en fournissant le mot de passe actuel. `NUXT_USER_CREATION_ALLOWED_USERS` est vide par défaut ; `alice,bob` permet uniquement à ces utilisateurs de créer des comptes, `*` permet à chaque utilisateur authentifié. Cette politique est appliquée côté serveur.
+- **UI:** La liste d’autorisation du serveur contrôle la consultation, la création, la réinitialisation des mots de passe et la suppression des comptes. `NUXT_USER_CREATION_ALLOWED_USERS`: `alice,bob`; `*`. Une valeur vide interdit l’administration ; les noms listés sont autorisés, et le joker autorise tout utilisateur authentifié.
 - **Autorisations :** La CLI accorde les référentiels cibles exacts, les espaces de noms (`team/*`) ou tout (`*`) ; les profils sont `reader` (pull), `writer` (pull/push) et `manager` (pull/push/delete). Le mode de base n'a aucun rôle de registre.
 
-Activez explicitement `NUXT_AUTH_MODE=htpasswd` ou `token` et configurez le `NUXT_AUTH_SERVICE_URL` interne et le `NUXT_AUTH_SERVICE_SECRET` serveur uniquement. Le mode jeton nécessite en outre que `NUXT_AUTH_TOKEN_REALM` corresponde exactement au point de terminaison du jeton public. Les registres anonymes et les services de jetons externes ne prennent pas en charge la gestion des comptes locaux. Les autorisations et les réinitialisations des mots de passe administratifs utilisent l'interface CLI d'authentification ; l'interface utilisateur ne peut pas modifier les mots de passe des autres utilisateurs ni attribuer d'autorisations.
+Activez explicitement `NUXT_AUTH_MODE=htpasswd` ou `token` et configurez le `NUXT_AUTH_SERVICE_URL` interne et le `NUXT_AUTH_SERVICE_SECRET` serveur uniquement. Le mode jeton nécessite en outre que `NUXT_AUTH_TOKEN_REALM` corresponde exactement au point de terminaison du jeton public. Les registres anonymes et les services de jetons externes ne prennent pas en charge la gestion des comptes locaux. Les droits sur les dépôts sont gérés via la CLI d’authentification ; l’interface les affiche en lecture seule.
 
-Consultez le [guide de service de compte](https://github.com/crateview/registry-ui/blob/bef44098e9acfe2aaa39c0ba0bbaa768b7853241/auth/README.md) pour les superpositions, la configuration, la migration et les commandes CLI de Compose. Acheminez l’accès public Docker directement au registre indépendamment de l’interface utilisateur. Les jetons précédemment émis restent valides jusqu'à cinq minutes après la modification du mot de passe ou la révocation de l'autorisation.
+Consultez le [guide de service de compte](https://github.com/crateview/registry-ui/blob/3844d7605dac80d0d58999201c43e94c644d72c0/auth/README.md) pour les superpositions, la configuration, la migration et les commandes CLI de Compose. Acheminez l’accès public Docker directement au registre indépendamment de l’interface utilisateur. Les jetons précédemment émis restent valides jusqu'à cinq minutes après la modification du mot de passe ou la révocation de l'autorisation.
 
 Administration regroupe Paramètres et Utilisateurs. Le menu du compte propose aussi langue et thème. Compte modifie votre mot de passe après vérification de l'actuel. La liste serveur contrôle consultation et création des comptes ; les droits des jetons sont en lecture seule. Un nouveau mot de passe exige au moins 12 caractères et au plus 72 octets UTF-8. Les nouveaux comptes à jetons n'ont aucun accès initial aux dépôts.
 
+La liste d’autorisation du serveur contrôle la consultation, la création, la réinitialisation des mots de passe et la suppression des comptes. Le menu à trois points aligné à droite permet aux administrateurs de réinitialiser le mot de passe d’un autre utilisateur sans son ancien mot de passe ou de supprimer son compte après confirmation. La réinitialisation conserve les droits sur les dépôts ; la suppression les retire. Votre propre menu ouvre Compte pour changer votre mot de passe avec le mot de passe actuel ; la suppression de votre propre compte est bloquée.
+
 ![Version de documentation](https://crateview.de/images/docs/next/users-light.webp)
+
+![Actes](https://crateview.de/images/docs/next/user-actions-light.webp)
+
+![Changer le mot de passe](https://crateview.de/images/docs/next/user-password-light.webp)
+
+![Supprimer l’utilisateur](https://crateview.de/images/docs/next/user-delete-light.webp)
 
 ```dotenv
 NUXT_AUTH_MODE=htpasswd

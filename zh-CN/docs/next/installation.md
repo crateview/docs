@@ -10,7 +10,7 @@ description: "启动完整的堆栈或将 UI 连接到现有镜像仓库。"
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout bef44098e9acfe2aaa39c0ba0bbaa768b7853241
+git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
 docker build -t crateview-registry-ui:next .
 ```
 
@@ -207,7 +207,7 @@ CLI 与 UI 登录分开提示输入密码。有关详细信息，请参阅[authe
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout bef44098e9acfe2aaa39c0ba0bbaa768b7853241
+git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
 npm ci
 cp .env.example .env
 ```
@@ -244,6 +244,6 @@ Crateview 需要其 Nitro 服务器进行身份验证和 API 代理。仅将前�
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout bef44098e9acfe2aaa39c0ba0bbaa768b7853241
+git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
 docker compose -f compose.yaml -f compose.build.yaml up --build -d
 ```

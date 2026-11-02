@@ -53,16 +53,24 @@ Um serviço de gerenciamento/auth independente oferece suporte à criação de c
 
 - **Modo básico:** Distribution verifica o arquivo htpasswd compartilhado; todos os usuários têm igual acesso ao registro. Docker não requer a execução do serviço de gerenciamento.
 - **Modo token:** O serviço independente auth emite tokens assinados de cinco minutos; Distribution impõe permissões de repositório. Docker requer o registro e o serviço auth. Novos usuários inicialmente não têm acesso ao repositório.
-- **IU:** os usuários alteram sua própria senha fornecendo a senha atual. O padrão `NUXT_USER_CREATION_ALLOWED_USERS` é vazio; `alice,bob` permite que apenas esses usuários criem contas, `*` permite que todos os usuários autenticados. Esta política é aplicada no lado do servidor.
+- **UI:** A lista de permissões do servidor controla a listagem, criação, redefinição de senhas e exclusão de contas. `NUXT_USER_CREATION_ALLOWED_USERS`: `alice,bob`; `*`. Um valor vazio nega a administração; os nomes listados são permitidos e o curinga permite todos os usuários autenticados.
 - **Permissões:** CLI concede repositórios de destino exatos, namespaces (`team/*`) ou tudo (`*`); os perfis são `reader` (pull), `writer` (pull/push) e `manager` (pull/push/excluir). O modo básico não possui funções de registro.
 
-Ative explicitamente `NUXT_AUTH_MODE=htpasswd` ou `token` e configure o `NUXT_AUTH_SERVICE_URL` interno e o `NUXT_AUTH_SERVICE_SECRET` somente de servidor. O modo token também requer que `NUXT_AUTH_TOKEN_REALM` corresponda exatamente ao endpoint do token público. Registros anônimos e serviços de token externos não oferecem suporte ao gerenciamento de contas locais. Permissões e redefinições de senha administrativa usam a CLI auth; a UI não pode alterar as senhas de outros usuários nem atribuir permissões.
+Ative explicitamente `NUXT_AUTH_MODE=htpasswd` ou `token` e configure o `NUXT_AUTH_SERVICE_URL` interno e o `NUXT_AUTH_SERVICE_SECRET` somente de servidor. O modo token também requer que `NUXT_AUTH_TOKEN_REALM` corresponda exatamente ao endpoint do token público. Registros anônimos e serviços de token externos não oferecem suporte ao gerenciamento de contas locais. As permissões dos repositórios são gerenciadas pela CLI de autenticação; a interface as exibe somente para leitura.
 
-Consulte o [guia de serviço de conta](https://github.com/crateview/registry-ui/blob/bef44098e9acfe2aaa39c0ba0bbaa768b7853241/auth/README.md) para sobreposições do Compose, configuração, migração e comandos CLI. Roteie o acesso público Docker diretamente para o registro, independentemente da IU. Os tokens emitidos anteriormente permanecem válidos por até cinco minutos após alterações de senha ou revogação de permissão.
+Consulte o [guia de serviço de conta](https://github.com/crateview/registry-ui/blob/3844d7605dac80d0d58999201c43e94c644d72c0/auth/README.md) para sobreposições do Compose, configuração, migração e comandos CLI. Roteie o acesso público Docker diretamente para o registro, independentemente da IU. Os tokens emitidos anteriormente permanecem válidos por até cinco minutos após alterações de senha ou revogação de permissão.
 
 Administração agrupa Configurações e Usuários. O menu da conta também oferece idioma e tema. Conta altera sua senha com confirmação da atual. A lista do servidor controla listagem e criação de contas; concessões de token são somente leitura. Novas senhas exigem no mínimo 12 caracteres e no máximo 72 bytes UTF-8. Novas contas de token começam sem acesso a repositórios.
 
+A lista de permissões do servidor controla a listagem, criação, redefinição de senhas e exclusão de contas. O menu de três pontos alinhado à direita permite aos administradores redefinir a senha de outro usuário sem a senha antiga ou excluir sua conta após confirmação. A redefinição preserva as permissões dos repositórios; a exclusão as remove. Seu próprio menu abre Conta para alterar sua senha com a senha atual; a exclusão da própria conta é bloqueada.
+
 ![Versão da documentação](https://crateview.de/images/docs/next/users-light.webp)
+
+![Ações](https://crateview.de/images/docs/next/user-actions-light.webp)
+
+![Alterar a senha](https://crateview.de/images/docs/next/user-password-light.webp)
+
+![Excluir usuário](https://crateview.de/images/docs/next/user-delete-light.webp)
 
 ```dotenv
 NUXT_AUTH_MODE=htpasswd

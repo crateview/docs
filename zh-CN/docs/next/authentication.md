@@ -53,16 +53,24 @@ Docker 和其他 CLI 客户端使用其正常的镜像仓库凭据直接通过 `
 
 - **基本模式：** Distribution 检查共享的htpasswd 文件；所有用户都具有平等的镜像仓库访问权限。 Docker 不需要管理服务来运行。
 - **代币模式：** 独立auth服务发行签名五分钟代币； Distribution 强制执行存储库权限。 Docker 需要镜像仓库和 auth 服务。新用户最初没有存储库访问权限。
-- **UI：** 用户通过提供当前密码来更改自己的密码。 `NUXT_USER_CREATION_ALLOWED_USERS` 默认为空； `alice,bob` 仅允许这些用户创建帐户，`*` 允许每个经过身份验证的用户。该策略是在服务器端强制执行的。
+- **UI:** 服务器允许列表控制账户查看、创建、密码重置和删除。 `NUXT_USER_CREATION_ALLOWED_USERS`: `alice,bob`; `*`. 空值禁止管理；列出的用户名允许管理，通配符允许所有已认证用户。
 - **权限：** CLI 授予目标确切的存储库、命名空间 (`team/*`) 或所有内容 (`*`)；配置文件为 `reader` (pull)、`writer` (pull/push) 和 `manager` (pull/push/删除)。基本模式没有镜像仓库角色。
 
-显式启用 `NUXT_AUTH_MODE=htpasswd` 或 `token` 并配置内部 `NUXT_AUTH_SERVICE_URL` 和仅服务器 `NUXT_AUTH_SERVICE_SECRET`。令牌模式还需要 `NUXT_AUTH_TOKEN_REALM` 与公共令牌端点完全匹配。匿名镜像仓库和外部令牌服务不支持本地帐户管理。权限和管理密码重置使用 auth CLI； UI 无法更改其他用户的密码或分配权限。
+显式启用 `NUXT_AUTH_MODE=htpasswd` 或 `token` 并配置内部 `NUXT_AUTH_SERVICE_URL` 和仅服务器 `NUXT_AUTH_SERVICE_SECRET`。令牌模式还需要 `NUXT_AUTH_TOKEN_REALM` 与公共令牌端点完全匹配。匿名镜像仓库和外部令牌服务不支持本地帐户管理。仓库权限通过认证 CLI 管理；界面仅以只读方式显示。
 
-请参阅[帐户服务指南](https://github.com/crateview/registry-ui/blob/bef44098e9acfe2aaa39c0ba0bbaa768b7853241/auth/README.md)，了解 Compose 覆盖、设置、迁移和 CLI 命令。将公共 Docker 访问直接路由到镜像仓库，独立于 UI。之前颁发的令牌在密码更改或权限撤销后最多五分钟内仍然有效。
+请参阅[帐户服务指南](https://github.com/crateview/registry-ui/blob/3844d7605dac80d0d58999201c43e94c644d72c0/auth/README.md)，了解 Compose 覆盖、设置、迁移和 CLI 命令。将公共 Docker 访问直接路由到镜像仓库，独立于 UI。之前颁发的令牌在密码更改或权限撤销后最多五分钟内仍然有效。
 
 管理区域包含设置和用户。账户菜单也提供语言和主题。账户页面要求当前密码才能修改自己的密码。只有服务器允许名单授权的用户才能列出和创建账户；令牌权限只读。新密码至少12个字符且最多72个UTF-8字节。新令牌账户最初无仓库访问权。
 
+服务器允许列表控制账户查看、创建、密码重置和删除。 右侧三点菜单允许管理员在不提供旧密码的情况下重置其他用户的密码，或在确认后删除其账户。重置密码保留仓库权限；删除账户会移除权限。自己的菜单会打开“账户”，需要当前密码才能更改密码；不能删除自己的账户。
+
 ![文档版本](https://crateview.de/images/docs/next/users-light.webp)
+
+![行动](https://crateview.de/images/docs/next/user-actions-light.webp)
+
+![更改密码](https://crateview.de/images/docs/next/user-password-light.webp)
+
+![删除用户](https://crateview.de/images/docs/next/user-delete-light.webp)
 
 ```dotenv
 NUXT_AUTH_MODE=htpasswd

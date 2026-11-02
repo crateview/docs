@@ -68,3 +68,5 @@ Monitoring ist optional und standardmäßig deaktiviert. Aktiviert öffnet Über
 | `NUXT_USER_CREATION_ALLOWED_USERS` | — |
 
 Administration bündelt Einstellungen und Benutzer. Das Kontomenü bietet zusätzlich Sprache und Theme. Unter Konto änderst du dein eigenes Passwort mit dem aktuellen Passwort. Benutzer listet und erstellt Konten nur bei erlaubender Server-Allowlist; Token-Grants sind schreibgeschützt. Neue Passwörter benötigen mindestens 12 Zeichen und höchstens 72 UTF-8-Bytes. Neue Token-Konten besitzen zunächst keinen Repository-Zugriff.
+
+Die Server-Allowlist steuert Auflisten, Anlegen, Passwort-Resets und Löschen von Konten. Im rechtsbündigen Drei-Punkte-Menü können Administratoren fremde Passwörter ohne das bisherige Passwort zurücksetzen und andere Konten nach Bestätigung löschen. Passwort-Resets erhalten Repository-Rechte; beim Löschen werden sie entfernt. Das eigene Menü öffnet Konto für eine Passwortänderung mit dem aktuellen Passwort; Selbstlöschung ist gesperrt.

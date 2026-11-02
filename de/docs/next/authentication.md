@@ -53,16 +53,24 @@ Ein separater Auth-/Verwaltungsdienst ermöglicht Benutzeranlage und eigene Pass
 
 - **Basic-Modus:** Distribution prüft die gemeinsame htpasswd-Datei; alle Benutzer haben dieselben Registry-Rechte. Der Verwaltungsdienst muss für Docker-Zugriffe nicht laufen.
 - **Token-Modus:** Der eigenständige Auth-Dienst stellt fünf Minuten gültige signierte Tokens aus; Distribution erzwingt Repository-Rechte. Docker benötigt Registry und Auth-Dienst. Neue Benutzer haben zunächst keine Repository-Rechte.
-- **UI:** Jeder Benutzer kann sein eigenes Passwort unter Angabe des bisherigen Passworts ändern. `NUXT_USER_CREATION_ALLOWED_USERS` ist standardmäßig leer; `alice,bob` erlaubt nur diesen Benutzern die Anlage weiterer Konten, `*` allen angemeldeten Benutzern. Die Prüfung erfolgt serverseitig.
+- **UI:** Die Server-Allowlist steuert Auflisten, Anlegen, Passwort-Resets und Löschen von Konten. `NUXT_USER_CREATION_ALLOWED_USERS`: `alice,bob`; `*`. Leer verweigert die Verwaltung; aufgeführte Namen sind erlaubt, der Platzhalter erlaubt alle angemeldeten Benutzer.
 - **Rechte:** CLI-Zuweisungen für exakte Repositories, Namespaces (`team/*`) oder global (`*`); Profile `reader` (Pull), `writer` (Pull/Push), `manager` (Pull/Push/Löschen). Im Basic-Modus gibt es keine Registry-Rollen.
 
-Aktiviere explizit `NUXT_AUTH_MODE=htpasswd` oder `token`, setze die interne `NUXT_AUTH_SERVICE_URL` und das serverseitige `NUXT_AUTH_SERVICE_SECRET`. Im Token-Modus muss `NUXT_AUTH_TOKEN_REALM` genau dem öffentlichen Token-Endpunkt entsprechen. Anonyme Registries und fremde Token-Dienste bieten keine lokale Benutzerverwaltung. Token-Rechte und Passwort-Resets werden per Auth-CLI verwaltet; die UI kann keine fremden Passwörter ändern oder Rechte vergeben.
+Aktiviere explizit `NUXT_AUTH_MODE=htpasswd` oder `token`, setze die interne `NUXT_AUTH_SERVICE_URL` und das serverseitige `NUXT_AUTH_SERVICE_SECRET`. Im Token-Modus muss `NUXT_AUTH_TOKEN_REALM` genau dem öffentlichen Token-Endpunkt entsprechen. Anonyme Registries und fremde Token-Dienste bieten keine lokale Benutzerverwaltung. Repository-Rechte werden per Auth-CLI vergeben; die UI zeigt sie schreibgeschützt an.
 
-Compose-Dateien, Einrichtung, Migration und CLI-Befehle stehen im [Auth-Dienst-Handbuch](https://github.com/crateview/registry-ui/blob/bef44098e9acfe2aaa39c0ba0bbaa768b7853241/auth/README.md). Beide Auth-Modi sind optionale Compose-Overlays; der öffentliche Docker-Zugang muss unabhängig zum Registry-Dienst geroutet werden. Bereits ausgestellte Tokens bleiben nach Passwortänderungen oder Rechteentzug bis zu fünf Minuten gültig.
+Compose-Dateien, Einrichtung, Migration und CLI-Befehle stehen im [Auth-Dienst-Handbuch](https://github.com/crateview/registry-ui/blob/3844d7605dac80d0d58999201c43e94c644d72c0/auth/README.md). Beide Auth-Modi sind optionale Compose-Overlays; der öffentliche Docker-Zugang muss unabhängig zum Registry-Dienst geroutet werden. Bereits ausgestellte Tokens bleiben nach Passwortänderungen oder Rechteentzug bis zu fünf Minuten gültig.
 
 Administration bündelt Einstellungen und Benutzer. Das Kontomenü bietet zusätzlich Sprache und Theme. Unter Konto änderst du dein eigenes Passwort mit dem aktuellen Passwort. Benutzer listet und erstellt Konten nur bei erlaubender Server-Allowlist; Token-Grants sind schreibgeschützt. Neue Passwörter benötigen mindestens 12 Zeichen und höchstens 72 UTF-8-Bytes. Neue Token-Konten besitzen zunächst keinen Repository-Zugriff.
 
+Die Server-Allowlist steuert Auflisten, Anlegen, Passwort-Resets und Löschen von Konten. Im rechtsbündigen Drei-Punkte-Menü können Administratoren fremde Passwörter ohne das bisherige Passwort zurücksetzen und andere Konten nach Bestätigung löschen. Passwort-Resets erhalten Repository-Rechte; beim Löschen werden sie entfernt. Das eigene Menü öffnet Konto für eine Passwortänderung mit dem aktuellen Passwort; Selbstlöschung ist gesperrt.
+
 ![Dokumentationsversion](https://crateview.de/images/docs/next/users-light.webp)
+
+![Aktionen](https://crateview.de/images/docs/next/user-actions-light.webp)
+
+![Passwort ändern](https://crateview.de/images/docs/next/user-password-light.webp)
+
+![Benutzer löschen](https://crateview.de/images/docs/next/user-delete-light.webp)
 
 ```dotenv
 NUXT_AUTH_MODE=htpasswd
