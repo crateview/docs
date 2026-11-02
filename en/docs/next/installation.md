@@ -5,6 +5,7 @@ description: "Start the complete stack or connect the UI to an existing registry
 
 Match examples to this version's source revision; do not clone the default branch for an archived installation.
 
+<!-- release:installation:start -->
 Preview containers must first be built locally from the pinned source revision; no released preview image is implied.
 
 ```sh
@@ -13,6 +14,7 @@ cd registry-ui
 git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
 docker build -t crateview-registry-ui:next .
 ```
+<!-- release:installation:end -->
 
 
 ## Requirements

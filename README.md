@@ -57,3 +57,30 @@ inside the selected version and language.
 This repository contains documentation only. Website source, builds and container
 image remain private. Registry UI source is public at
 [crateview/registry-ui](https://github.com/crateview/registry-ui).
+
+## Automatic release promotion
+
+`next` is an internal editorial source, not a public preview. Keep all 13 locales
+current before publishing a registry UI release. The website returns 404 for next
+routes and excludes next from its content index and published screenshot assets.
+
+The registry UI release workflow pins this repository's main commit in its
+`docs-promotion.json` release asset. The website promotes that immutable snapshot
+to `v<major>.<minor>`; patches update the existing minor. Older minor archives are
+retained. Changes committed after the request was created belong to a future
+release, even when a promotion is retried.
+
+Installation and operations pages contain explicit `release:<slug>:start/end`
+HTML comment markers. The promotion replaces only those sections with the matching
+`release-templates/<locale>/<slug>.md` fragment. An empty installation fragment
+removes the local preview-build introduction. Operations fragments use
+`{{RELEASE_TAG}}` for the published version. Preserve markers and update localized
+fragments when release instructions change. Other next links, the recorded source
+revision, and the exact local preview image reference are converted structurally.
+
+Each manifest entry declares `captures` capabilities (`overviewRoute`, `monitoring`,
+`accounts`, `userActions`). Keep next capabilities aligned with the upcoming UI.
+The website takes fresh screenshots from the released registry source revision;
+existing next captures are not relabeled as release captures. Failed validation
+or screenshots stop publication. Website automation setup and recovery are
+documented in the website repository. Production server deployment remains manual.

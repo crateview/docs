@@ -39,6 +39,7 @@ Haga una copia de seguridad del almacenamiento de su registro y su configuració
 
 ## Actualizar Crateview
 
+<!-- release:operations:start -->
 Construye primero los contenedores de vista previa desde la revisión fijada; no se presupone una imagen publicada.
 
 ```sh
@@ -47,6 +48,7 @@ cd registry-ui
 git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
 docker compose -f compose.yaml -f compose.build.yaml up --build -d
 ```
+<!-- release:operations:end -->
 
 ## Grandes registros
 

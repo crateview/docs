@@ -39,6 +39,7 @@ Distribution は `REGISTRY_STORAGE_DELETE_ENABLED=true` とも読み取れます
 
 ## Crateviewを更新
 
+<!-- release:operations:start -->
 プレビューコンテナは固定ソースからローカルビルドします。公開済みプレビューイメージは前提にしません。
 
 ```sh
@@ -47,6 +48,7 @@ cd registry-ui
 git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
 docker compose -f compose.yaml -f compose.build.yaml up --build -d
 ```
+<!-- release:operations:end -->
 
 ## 大規模なレジストリ
 

@@ -39,6 +39,7 @@ Distribution 也可以读取 `REGISTRY_STORAGE_DELETE_ENABLED=true`。更改环�
 
 ## 更新Crateview
 
+<!-- release:operations:start -->
 预览容器需先从固定源码修订本地构建，不假定存在已发布预览镜像。
 
 ```sh
@@ -47,6 +48,7 @@ cd registry-ui
 git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
 docker compose -f compose.yaml -f compose.build.yaml up --build -d
 ```
+<!-- release:operations:end -->
 
 ## 大型镜像仓库
 

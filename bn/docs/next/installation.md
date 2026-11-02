@@ -5,6 +5,7 @@ description: "সম্পূর্ণ স্ট্যাক শুরু কর
 
 এই সংস্করণের সোর্স ব্যবহার করুন; সংরক্ষিত ইনস্টলেশনে ডিফল্ট শাখা ক্লোন করবেন না।
 
+<!-- release:installation:start -->
 প্রাকদর্শন কন্টেনার আগে নির্দিষ্ট সোর্স থেকে স্থানীয়ভাবে তৈরি করুন; প্রকাশিত ইমেজ ধরে নেবেন না।
 
 ```sh
@@ -13,6 +14,7 @@ cd registry-ui
 git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
 docker build -t crateview-registry-ui:next .
 ```
+<!-- release:installation:end -->
 
 
 ## প্রয়োজনীয়তা

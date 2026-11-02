@@ -39,6 +39,7 @@ Distribution также может читать `REGISTRY_STORAGE_DELETE_ENABLED
 
 ## Обновление Crateview
 
+<!-- release:operations:start -->
 Предварительные контейнеры сначала собираются локально из закреплённой ревизии; опубликованный образ не предполагается.
 
 ```sh
@@ -47,6 +48,7 @@ cd registry-ui
 git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
 docker compose -f compose.yaml -f compose.build.yaml up --build -d
 ```
+<!-- release:operations:end -->
 
 ## Большие реестры
 

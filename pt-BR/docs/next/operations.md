@@ -39,6 +39,7 @@ Faça backup do armazenamento do registro e de sua configuração usando um mét
 
 ## Atualizar Crateview
 
+<!-- release:operations:start -->
 Compile contêineres de prévia localmente da revisão fixada; não se presume imagem publicada.
 
 ```sh
@@ -47,6 +48,7 @@ cd registry-ui
 git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
 docker compose -f compose.yaml -f compose.build.yaml up --build -d
 ```
+<!-- release:operations:end -->
 
 ## Grandes registros
 
