@@ -1,0 +1,50 @@
+name: Translation issue
+description: Report a translation, terminology or right-to-left layout problem.
+labels:
+  - documentation
+  - translation
+  - needs-triage
+body:
+  - type: markdown
+    attributes:
+      value: Search existing issues before submitting. English and German reports are welcome. Remove
+        passwords, tokens, cookies, private registry names and sensitive image contents from logs
+        and screenshots. Report vulnerabilities privately using the security link in the issue
+        chooser.
+  - type: input
+    id: page
+    attributes:
+      label: Affected page or source file
+      description: Paste the documentation URL or source path, including version and locale, for example
+        en/docs/v0.5/overview.md.
+    validations:
+      required: true
+  - type: input
+    id: locale
+    attributes:
+      label: Language / locale
+      description: Include the locale code, such as de, zh-CN, pt-BR or ar.
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: Current wording or layout
+      description: Quote the affected passage, or describe the layout problem.
+    validations:
+      required: true
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested translation or fix
+      description: Provide the proposed wording and explain the intended meaning. Preserve commands, code
+        and technical identifiers.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Link the English reference page and add screenshots for layout problems.
+    validations:
+      required: false

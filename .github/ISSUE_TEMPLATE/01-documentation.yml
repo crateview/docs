@@ -1,0 +1,50 @@
+name: Documentation issue / improvement
+description: Report incorrect, missing or unclear documentation.
+labels:
+  - documentation
+  - needs-triage
+body:
+  - type: markdown
+    attributes:
+      value: Search existing issues before submitting. English and German reports are welcome. Remove
+        passwords, tokens, cookies, private registry names and sensitive image contents from logs
+        and screenshots. Report vulnerabilities privately using the security link in the issue
+        chooser.
+  - type: input
+    id: page
+    attributes:
+      label: Affected page or source file
+      description: Paste the documentation URL or source path, including version and locale, for example
+        en/docs/v0.5/overview.md.
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or missing information
+      description: Quote the relevant passage or describe the missing guide. For broken instructions,
+        include the command and sanitized error.
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: Suggested correction
+      description: Explain what the documentation should say or cover.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Affected Crateview version
+      description: Include the application release or exact commit. Historical guides should match their
+        documented version.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Add relevant links or sanitized screenshots.
+    validations:
+      required: false
