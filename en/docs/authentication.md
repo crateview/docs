@@ -5,9 +5,9 @@ description: 'Anonymous access, Basic Auth, encrypted sessions and HTTPS.'
 
 ## Supported authentication
 
-Crateview supports anonymous registries and native htpasswd Basic Auth. It probes `/v2/` and displays the sign-in form when the registry requires Basic authentication.
+Crateview supports anonymous registries, native htpasswd Basic Auth and the optional Crateview auth service in token mode. It probes `/v2/` and displays the sign-in form when the registry requires Basic authentication.
 
-External Bearer-token services and OIDC are not integrated. A token challenge produces an explicit unsupported-auth notice rather than a misleading login form.
+External Bearer-token services and OIDC are not integrated. Unconfigured external token services produce an explicit unsupported-auth notice.
 
 ## Registry-side Basic Auth
 
@@ -46,3 +46,16 @@ Use the generated value as `NUXT_SESSION_PASSWORD`, with at least 32 characters.
 The session cookie uses Secure when the public request protocol is HTTPS. Configure the reverse proxy's forwarded protocol correctly. Signing out clears the UI session; it does not delete or modify registry users.
 
 Docker and other CLI clients authenticate directly through the `/v2/**` proxy using their normal registry credentials. Signing into the web UI does not sign the Docker CLI in automatically.
+
+## Optional account management
+
+An independent auth/management service supports account creation and own-password changes. Docker connects directly to the registry and works without the UI container. Users and bcrypt hashes stay in `htpasswd`; token permissions live in `permissions.json`. Account storage does not use SQLite.
+
+- **Basic mode:** Distribution checks the shared htpasswd file; all users have equal registry access. Docker does not require the management service to run.
+- **Token mode:** The independent auth service issues signed five-minute tokens; Distribution enforces repository permissions. Docker requires the registry and auth service. New users initially have no repository access.
+- **UI:** Users change their own password by supplying the current password. `NUXT_USER_CREATION_ALLOWED_USERS` defaults to empty; `alice,bob` allows only those users to create accounts, `*` allows every authenticated user. This policy is enforced server-side.
+- **Permissions:** CLI grants target exact repositories, namespaces (`team/*`) or everything (`*`); profiles are `reader` (pull), `writer` (pull/push), and `manager` (pull/push/delete). Basic mode has no registry roles.
+
+Explicitly enable `NUXT_AUTH_MODE=htpasswd` or `token` and configure the internal `NUXT_AUTH_SERVICE_URL` and server-only `NUXT_AUTH_SERVICE_SECRET`. Token mode additionally requires `NUXT_AUTH_TOKEN_REALM` to match the public token endpoint exactly. Anonymous registries and external token services do not support local account management. Permissions and administrative password resets use the auth CLI; the UI cannot change other users' passwords or assign permissions.
+
+See the [account service guide](https://github.com/crateview/registry-ui/blob/main/auth/README.md) for Compose overlays, setup, migration and CLI commands. Route public Docker access directly to the registry independently of the UI. Previously issued tokens remain valid for up to five minutes after password changes or permission revocation.
