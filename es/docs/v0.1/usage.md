@@ -1,0 +1,40 @@
+---
+title: "Usando Crateview"
+description: "Navegue por imágenes, cambie de plataforma e inspeccione los datos detrás de una etiqueta."
+---
+
+## Encuentra repositorios y etiquetas
+
+Explorar enumera repositorios. La búsqueda acepta nombres y repository:tag. Abre un repositorio para ver sus etiquetas.
+
+Resumen enumera repositorios; Explorar filtra nombres. / o Ctrl+K enfoca la búsqueda de la barra superior. Tema e idioma están al pie de la barra lateral.
+
+## Inspeccionar una imagen
+
+Abra un repositorio y seleccione una etiqueta. La vista de imagen muestra su digest, plataformas disponibles, tamaños de capa comprimida y metadatos de creación.
+
+Para una imagen multiplataforma, elija el sistema operativo y la arquitectura en el selector de plataforma. El historial de capas y la configuración de la imagen seleccionada siguen esa elección. La pestaña Manifiesto sin formato muestra el índice o manifiesto raíz de la imagen; Configuración muestra la configuración de la plataforma seleccionada.
+
+![Detalles de la imagen alpina con selección de plataforma, historial de capas y comando pull.](https://crateview.de/images/docs/v0.1/image-light.webp)
+
+## Comandos Pull
+
+El panel de comandos proporciona comandos Docker, Podman y Skopeo para imágenes, y comandos de artefactos ORAS/Podman para artefactos. Copie el comando y ejecútelo en su propia terminal.
+
+```sh
+docker pull registry.example.com/team/service:latest
+podman pull registry.example.com/team/service:latest
+oras pull registry.example.com/team/report:latest
+```
+
+Reemplace el host de ejemplo con su origen público Crateview. La autenticación CLI es independiente de la sesión de su navegador.
+
+## Metadatos y referencias OCI
+
+Las descripciones, licencias y enlaces de origen se leen de las anotaciones OCI o de las etiquetas de configuración de imágenes cuando están disponibles. Los metadatos faltantes permanecen vacíos en lugar de ser adivinados.
+
+La pestaña Referentes lee los referentes OCI API. Si el registro no implementa ese punto final, Crateview lee el índice de etiquetas estándar derivado de digest mantenido por los clientes OCI. No crea su propio índice escaneando cada manifiesto. Los artefactos de firma enumerados no se verifican ni se marcan como confiables automáticamente.
+
+## Interpretar marcas de tiempo y tamaños.
+
+El tiempo de creación de la imagen lo proporcionan la configuración de la imagen o las anotaciones. No le indica cuándo se envió una etiqueta a este registro. Los tamaños de las capas comprimidas no miden el consumo de disco, porque las capas se pueden compartir y los datos eliminados pueden permanecer hasta la recolección de basura.

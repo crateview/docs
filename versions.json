@@ -1,0 +1,87 @@
+{
+  "stable": "v0.4",
+  "versions": [
+    {
+      "id": "v0.1",
+      "release": "v0.1.2",
+      "revision": "18e3876904587f6d53480d9d38b67ac3ed195318",
+      "status": "archived",
+      "slugs": [
+        "overview",
+        "installation",
+        "configuration",
+        "authentication",
+        "theming",
+        "usage",
+        "operations",
+        "troubleshooting"
+      ]
+    },
+    {
+      "id": "v0.2",
+      "release": "v0.2.1",
+      "revision": "6c5e3d353c4a56bccaecb114571c3af1b4e9d9e9",
+      "status": "archived",
+      "slugs": [
+        "overview",
+        "installation",
+        "configuration",
+        "authentication",
+        "theming",
+        "usage",
+        "operations",
+        "troubleshooting"
+      ]
+    },
+    {
+      "id": "v0.3",
+      "release": "v0.3.0",
+      "revision": "a5f5497df76315ba3a7f860911d301f2c0ab0842",
+      "status": "archived",
+      "slugs": [
+        "overview",
+        "installation",
+        "configuration",
+        "authentication",
+        "theming",
+        "usage",
+        "operations",
+        "troubleshooting"
+      ]
+    },
+    {
+      "id": "v0.4",
+      "release": "v0.4.0",
+      "revision": "6b956de6a2891fcf8bfbb720369dda0693d8115e",
+      "status": "stable",
+      "slugs": [
+        "overview",
+        "installation",
+        "configuration",
+        "authentication",
+        "theming",
+        "usage",
+        "operations",
+        "troubleshooting",
+        "monitoring"
+      ]
+    },
+    {
+      "id": "next",
+      "release": null,
+      "revision": "bef44098e9acfe2aaa39c0ba0bbaa768b7853241",
+      "status": "preview",
+      "slugs": [
+        "overview",
+        "installation",
+        "configuration",
+        "authentication",
+        "theming",
+        "usage",
+        "operations",
+        "troubleshooting",
+        "monitoring"
+      ]
+    }
+  ]
+}
