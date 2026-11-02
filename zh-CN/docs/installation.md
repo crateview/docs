@@ -5,7 +5,7 @@ description: "启动完整的堆栈或将 UI 连接到现有镜像仓库。"
 
 ## 要求
 
-使用 Node.js 24.22.2 或 v24 中的更高版本进行本地开发，或使用 Docker 和 Compose 进行完整堆栈。现有镜像仓库必须公开镜像仓库 HTTP API V2；捆绑的堆栈使用官方 `registry:3.1.2` 映像。
+使用 Node.js 26.13.0 或 v26 中的更高版本进行本地开发，或使用 Docker 和 Compose 进行完整堆栈。现有镜像仓库必须公开镜像仓库 HTTP API V2；捆绑的堆栈使用官方 `registry:3.1.2` 映像。
 
 ## Docker Compose 示例
 

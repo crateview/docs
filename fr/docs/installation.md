@@ -5,7 +5,7 @@ description: "Démarrez la pile complète ou connectez l'interface utilisateur �
 
 ## Exigences
 
-Utilisez Node.js 24.22.2 ou plus récent dans la v24 pour le développement local, ou Docker avec Compose pour la pile complète. Un registre existant doit exposer le registre HTTP API V2 ; la pile fournie utilise l'image officielle `registry:3.1.2`.
+Utilisez Node.js 26.13.0 ou plus récent dans la v26 pour le développement local, ou Docker avec Compose pour la pile complète. Un registre existant doit exposer le registre HTTP API V2 ; la pile fournie utilise l'image officielle `registry:3.1.2`.
 
 ## Docker Composer des exemples
 

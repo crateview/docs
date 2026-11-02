@@ -5,7 +5,7 @@ description: "Den kompletten Stack starten oder das UI mit einer vorhandenen Reg
 
 ## Voraussetzungen
 
-Verwende Node.js 24.22.2 oder neuer innerhalb von v24 für die lokale Entwicklung oder Docker mit Compose für den kompletten Stack. Eine vorhandene Registry muss Registry HTTP API V2 anbieten. Der mitgelieferte Stack verwendet das offizielle Image `registry:3.1.2`.
+Verwende Node.js 26.13.0 oder neuer innerhalb von v26 für die lokale Entwicklung oder Docker mit Compose für den kompletten Stack. Eine vorhandene Registry muss Registry HTTP API V2 anbieten. Der mitgelieferte Stack verwendet das offizielle Image `registry:3.1.2`.
 
 ## Docker-Compose-Beispiele
 

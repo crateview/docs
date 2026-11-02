@@ -5,7 +5,7 @@ description: "Mulai tumpukan lengkap atau sambungkan UI ke registri yang ada."
 
 ## Persyaratan
 
-Gunakan Node.js 24.22.2 atau yang lebih baru dalam v24 untuk pengembangan lokal, atau Docker dengan Compose untuk tumpukan lengkap. Registri yang ada harus mengekspos Registri HTTP API V2; tumpukan yang dibundel menggunakan gambar resmi `registry:3.1.2`.
+Gunakan Node.js 26.13.0 atau yang lebih baru dalam v26 untuk pengembangan lokal, atau Docker dengan Compose untuk tumpukan lengkap. Registri yang ada harus mengekspos Registri HTTP API V2; tumpukan yang dibundel menggunakan gambar resmi `registry:3.1.2`.
 
 ## Contoh Docker Compose
 

@@ -5,7 +5,7 @@ description: "Inicie a pilha completa ou conecte a UI a um registro existente."
 
 ## Requisitos
 
-Use Node.js 24.22.2 ou mais recente na v24 para desenvolvimento local ou Docker com Compose para a pilha completa. Um registro existente deve expor o Registro HTTP API V2; a pilha empacotada usa a imagem oficial `registry:3.1.2`.
+Use Node.js 26.13.0 ou mais recente na v26 para desenvolvimento local ou Docker com Compose para a pilha completa. Um registro existente deve expor o Registro HTTP API V2; a pilha empacotada usa a imagem oficial `registry:3.1.2`.
 
 ## Exemplos de Docker Compose
 

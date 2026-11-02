@@ -5,7 +5,7 @@ description: "Start the complete stack or connect the UI to an existing registry
 
 ## Requirements
 
-Use Node.js 24.22.2 or newer within v24 for local development, or Docker with Compose for the complete stack. An existing registry must expose Registry HTTP API V2; the bundled stack uses the official `registry:3.1.2` image.
+Use Node.js 26.13.0 or newer within v26 for local development, or Docker with Compose for the complete stack. An existing registry must expose Registry HTTP API V2; the bundled stack uses the official `registry:3.1.2` image.
 
 ## Docker Compose examples
 

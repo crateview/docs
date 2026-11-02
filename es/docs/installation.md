@@ -5,7 +5,7 @@ description: "Inicie la pila completa o conecte la interfaz de usuario a un regi
 
 ## Requisitos
 
-Utilice Node.js 24.22.2 o posterior dentro de v24 para el desarrollo local, o Docker con Compose para la pila completa. Un registro existente debe exponer el Registro HTTP API V2; la pila incluida utiliza la imagen oficial `registry:3.1.2`.
+Utilice Node.js 26.13.0 o posterior dentro de v26 para el desarrollo local, o Docker con Compose para la pila completa. Un registro existente debe exponer el Registro HTTP API V2; la pila incluida utiliza la imagen oficial `registry:3.1.2`.
 
 ## Ejemplos de Docker Compose
 
