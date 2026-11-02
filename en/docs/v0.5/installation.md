@@ -33,7 +33,7 @@ NUXT_SESSION_PASSWORD=REPLACE_WITH_GENERATED_SECRET
 ```yaml
 services:
   frontend:
-    image: ghcr.io/crateview/registry-ui:v0.5.0
+    image: ghcr.io/crateview/registry-ui:${CRATEVIEW_VERSION:-v0.5.0}
     ports:
       - "127.0.0.1:3000:3000"
     environment:
@@ -68,7 +68,7 @@ services:
       - registry-data:/var/lib/registry
     restart: unless-stopped
   frontend:
-    image: ghcr.io/crateview/registry-ui:v0.5.0
+    image: ghcr.io/crateview/registry-ui:${CRATEVIEW_VERSION:-v0.5.0}
     ports:
       - "127.0.0.1:3000:3000"
     environment:
@@ -151,7 +151,7 @@ services:
       - ./auth:/auth:ro
     restart: unless-stopped
   frontend:
-    image: ghcr.io/crateview/registry-ui:v0.5.0
+    image: ghcr.io/crateview/registry-ui:${CRATEVIEW_VERSION:-v0.5.0}
     environment:
       NUXT_REGISTRY_UPSTREAM: http://registry:5000
       NUXT_SESSION_PASSWORD: ${NUXT_SESSION_PASSWORD:?Set NUXT_SESSION_PASSWORD}
