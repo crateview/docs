@@ -3,6 +3,8 @@ title: 'Branding & Theming'
 description: 'Eigene Identität mit dem nativen Designsystem von Nuxt UI verbinden.'
 ---
 
+![Branding & Theming](https://crateview.de/images/docs/next/settings-light.webp)
+
 ## Standardwerte
 
 Crateview verwendet die Nuxt-UI-Paletten `red` für Primary und `zinc` für Neutral. Der Standard-Farbmodus ist System. Benutzer können unabhängig von deiner Farbkonfiguration Hell oder Dunkel wählen.

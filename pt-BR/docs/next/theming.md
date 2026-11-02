@@ -3,6 +3,8 @@ title: "Marca e tema"
 description: "Use sua própria identidade enquanto mantém o sistema de design nativo da UI Nuxt."
 ---
 
+![Marca e tema](https://crateview.de/images/docs/next/settings-light.webp)
+
 ## Padrões
 
 Crateview usa a paleta primária `red` da UI Nuxt e a paleta neutra `zinc`. O modo de cor padrão é Sistema; os usuários podem escolher Claro ou Escuro independentemente da configuração de cores.

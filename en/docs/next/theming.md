@@ -3,6 +3,8 @@ title: 'Branding & theming'
 description: 'Use your own identity while keeping Nuxt UI’s native design system.'
 ---
 
+![Branding & theming](https://crateview.de/images/docs/next/settings-light.webp)
+
 ## Defaults
 
 Crateview uses Nuxt UI's `red` primary palette and `zinc` neutral palette. The default color mode is System; users can choose Light or Dark independently of your color configuration.

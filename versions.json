@@ -1,5 +1,5 @@
 {
-  "stable": "v0.4",
+  "stable": "v0.5",
   "versions": [
     {
       "id": "v0.1",
@@ -53,6 +53,23 @@
       "id": "v0.4",
       "release": "v0.4.0",
       "revision": "6b956de6a2891fcf8bfbb720369dda0693d8115e",
+      "status": "archived",
+      "slugs": [
+        "overview",
+        "installation",
+        "configuration",
+        "authentication",
+        "theming",
+        "usage",
+        "operations",
+        "troubleshooting",
+        "monitoring"
+      ]
+    },
+    {
+      "id": "v0.5",
+      "release": "v0.5.0",
+      "revision": "bcb8fdd6bd0c2f852213546c985faf7be5e249f6",
       "status": "stable",
       "slugs": [
         "overview",

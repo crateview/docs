@@ -2,10 +2,10 @@
 
 Public documentation sources for [Crateview](https://crateview.de).
 
-- Stable: [English](https://crateview.de/docs/v0.4/overview), [Deutsch](https://crateview.de/de/docs/v0.4/overview).
-- Archived minors: `v0.1` (0.1.2), `v0.2` (0.2.1), `v0.3` (0.3.0).
+- Stable: [English](https://crateview.de/docs/v0.5/overview), [Deutsch](https://crateview.de/de/docs/v0.5/overview).
+- Archived minors: `v0.1` (0.1.2), `v0.2` (0.2.1), `v0.3` (0.3.0), `v0.4` (0.4.0).
 - Unreleased preview: `next`; exact source revisions and page lists live in `versions.json`.
-- All five versions support English, German, Simplified Chinese, Hindi, Spanish, Arabic, French, Bengali, Brazilian Portuguese, Indonesian, Urdu, Russian and Japanese.
+- All six versions support English, German, Simplified Chinese, Hindi, Spanish, Arabic, French, Bengali, Brazilian Portuguese, Indonesian, Urdu, Russian and Japanese.
 
 ## Editing
 
@@ -28,15 +28,15 @@ all website locale dictionaries.
 The initial archive was checked against `v0.1.2`, `v0.2.1`, `v0.3.0`, `v0.4.0`
 and preview commit `bef44098e9acfe2aaa39c0ba0bbaa768b7853241`:
 
-- All stable releases expose English/German UI only and use Node 24.22.2.
+- Releases through 0.4 expose English/German UI only and use Node 24.22.2. Release 0.5 adds thirteen UI languages, account management and Node 26.13.0.
 - 0.1 uses a repository overview and navbar search; 0.2 adds namespace table/grid
   views and the resizable sidebar; 0.3 adds theme-aware code highlighting.
 - 0.4 introduces the command palette, bulk digest deletion, optional Distribution
   monitoring, Settings and dependency-license inventory. Monitoring has its own
   guide only where supported; its SQLite database is optional.
-- Preview adds file-backed account management, managed token authorization,
+- 0.5 releases file-backed account management, managed token authorization,
   Administration/Users/Account pages, thirteen UI languages, RTL and Node 26.13.0.
-  No released image is claimed for this source snapshot.
+  The `next` snapshot remains a separate unreleased preview.
 
 For each release, check runtime defaults, Compose files, authentication and
 permission boundaries, UI routes/shortcuts, deletion semantics and screenshots
