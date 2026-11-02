@@ -3,6 +3,8 @@ title: "品牌和主题"
 description: "使用您自己的身份，同时保留 Nuxt UI 的原生设计系统。"
 ---
 
+![品牌和主题](https://crateview.de/images/docs/v0.4/settings-light.webp)
+
 ## 默认值
 
 Crateview 使用 Nuxt UI 的 `red` 主调色板和 `zinc` 中性调色板。默认颜色模式为System；用户可以选择浅色或深色，与您的颜色配置无关。

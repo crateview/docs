@@ -3,6 +3,8 @@ title: "ブランディングとテーマ設定"
 description: "Nuxt UI のネイティブ デザイン システムを維持しながら、独自のアイデンティティを使用します。"
 ---
 
+![ブランディングとテーマ設定](https://crateview.de/images/docs/next/settings-light.webp)
+
 ## デフォルト
 
 Crateview は、Nuxt UI の `red` プライマリ パレットと `zinc` ニュートラル パレットを使用します。デフォルトのカラー モードはシステムです。ユーザーは、色の設定とは関係なく、明るいまたは暗いを選択できます。

@@ -3,6 +3,8 @@ title: "Image de marque et thème"
 description: "Utilisez votre propre identité tout en conservant le système de conception natif de l’interface utilisateur Nuxt."
 ---
 
+![Image de marque et thème](https://crateview.de/images/docs/next/settings-light.webp)
+
 ## Valeurs par défaut
 
 Crateview utilise la palette primaire `red` de Nuxt UI et la palette neutre `zinc`. Le mode couleur par défaut est Système ; les utilisateurs peuvent choisir Clair ou Foncé indépendamment de votre configuration de couleurs.

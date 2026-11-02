@@ -3,6 +3,8 @@ title: "Pencitraan merek & tema"
 description: "Gunakan identitas Anda sendiri sambil tetap mempertahankan sistem desain asli Nuxt UI."
 ---
 
+![Pencitraan merek & tema](https://crateview.de/images/docs/next/settings-light.webp)
+
 ## Default
 
 Crateview menggunakan palet utama `red` Nuxt UI dan palet netral `zinc`. Mode warna default adalah Sistem; pengguna dapat memilih Terang atau Gelap terlepas dari konfigurasi warna Anda.
