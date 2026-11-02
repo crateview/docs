@@ -58,7 +58,7 @@ Layanan auth/manajemen independen mendukung pembuatan akun dan perubahan kata sa
 
 Aktifkan `NUXT_AUTH_MODE=htpasswd` atau `token` secara eksplisit dan konfigurasikan `NUXT_AUTH_SERVICE_URL` internal dan `NUXT_AUTH_SERVICE_SECRET` khusus server. Mode token juga memerlukan `NUXT_AUTH_TOKEN_REALM` agar sama persis dengan titik akhir token publik. Registri anonim dan layanan token eksternal tidak mendukung pengelolaan akun lokal. Izin repositori dikelola melalui CLI autentikasi; UI menampilkannya sebagai hanya baca.
 
-Lihat [panduan layanan akun](https://github.com/crateview/registry-ui/blob/3844d7605dac80d0d58999201c43e94c644d72c0/auth/README.md) untuk perintah Compose overlay, setup, migrasi, dan CLI. Rutekan akses publik Docker langsung ke registri secara independen dari UI. Token yang dikeluarkan sebelumnya tetap valid hingga lima menit setelah perubahan kata sandi atau pencabutan izin.
+Lihat [panduan layanan akun](https://github.com/crateview/registry-ui/blob/9954f9c33e34c65bab19378a9b488e9b8ed13b6d/auth/README.md) untuk perintah Compose overlay, setup, migrasi, dan CLI. Rutekan akses publik Docker langsung ke registri secara independen dari UI. Token yang dikeluarkan sebelumnya tetap valid hingga lima menit setelah perubahan kata sandi atau pencabutan izin.
 
 Administrasi mengelompokkan Pengaturan dan Pengguna. Menu akun juga menawarkan bahasa dan tema. Akun mengubah kata sandi sendiri setelah memverifikasi yang sekarang. Daftar izin server mengontrol daftar dan pembuatan akun; izin token hanya baca. Kata sandi baru minimal 12 karakter dan maksimal 72 byte UTF-8. Akun token baru belum memiliki akses repositori.
 

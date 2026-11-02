@@ -11,7 +11,7 @@ description: "Запустите полный стек или подключит
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
+git checkout 9954f9c33e34c65bab19378a9b488e9b8ed13b6d
 docker build -t crateview-registry-ui:next .
 ```
 <!-- release:installation:end -->
@@ -209,7 +209,7 @@ docker pull registry.example.com/alpine:latest
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
+git checkout 9954f9c33e34c65bab19378a9b488e9b8ed13b6d
 npm ci
 cp .env.example .env
 ```
@@ -246,6 +246,18 @@ Crateview нужен сервер Nitro для аутентификации и �
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
+git checkout 9954f9c33e34c65bab19378a9b488e9b8ed13b6d
 docker compose -f compose.yaml -f compose.build.yaml up --build -d
 ```
+
+<a id="pwa"></a>
+
+## Установка как приложения (PWA)
+
+Установите Crateview через встроенную команду установки или добавления на главный экран поддерживаемого браузера. Приложение открывается в автономном окне, но по-прежнему требует сервер Nitro и доступный реестр.
+
+В рабочей среде используйте HTTPS; localhost подходит для локальных проверок. Service worker включён только в производственной сборке, но не при `npm run dev`. Перед проверкой соберите и запустите производственный сервер.
+
+После успешного посещения онлайн и установки service worker запуск или перезагрузка без сети показывает сообщение о соединении. Повторная попытка загружает исходный URL после восстановления сети. Сохранённый язык имеет приоритет над языками браузера, запасной язык — английский; арабский и урду используют RTL.
+
+Офлайн-страница применяется только к переходам между документами приложения. Ответы реестра, учётных записей и сеансов не сохраняются в Cache Storage; просмотр реестра офлайн недоступен. Открытые экраны сохраняют обычную обработку ошибок. Трафик API и `/v2/` не заменяется офлайн-HTML; обновления worker не перезагружают вкладки принудительно.

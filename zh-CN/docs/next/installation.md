@@ -11,7 +11,7 @@ description: "启动完整的堆栈或将 UI 连接到现有镜像仓库。"
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
+git checkout 9954f9c33e34c65bab19378a9b488e9b8ed13b6d
 docker build -t crateview-registry-ui:next .
 ```
 <!-- release:installation:end -->
@@ -209,7 +209,7 @@ CLI 与 UI 登录分开提示输入密码。有关详细信息，请参阅[authe
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
+git checkout 9954f9c33e34c65bab19378a9b488e9b8ed13b6d
 npm ci
 cp .env.example .env
 ```
@@ -246,6 +246,18 @@ Crateview 需要其 Nitro 服务器进行身份验证和 API 代理。仅将前�
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
+git checkout 9954f9c33e34c65bab19378a9b488e9b8ed13b6d
 docker compose -f compose.yaml -f compose.build.yaml up --build -d
 ```
+
+<a id="pwa"></a>
+
+## 安装为应用（PWA）
+
+通过受支持浏览器的原生安装或添加到主屏幕功能安装 Crateview。应用以独立模式打开，但仍需要 Nitro 服务器和可访问的镜像仓库。
+
+生产环境请使用 HTTPS；localhost 可用于本地测试。Service Worker 仅在生产构建中启用，在 `npm run dev` 期间不会启用。测试安装或离线行为前，请先构建并启动生产服务器。
+
+成功在线访问并安装 Service Worker 后，离线启动或重新加载应用会显示连接提示。网络恢复后，重试会重新加载原始 URL。已保存的语言选择优先于浏览器语言，默认回退为英语；阿拉伯语和乌尔都语使用 RTL。
+
+离线提示仅处理应用文档导航。镜像仓库、账户和会话响应不会保存到 Cache Storage，也不支持离线浏览仓库。已打开的页面保留原有请求错误处理。API 和 `/v2/` 流量不会被离线 HTML 替换，Worker 更新也不会强制重新加载已打开的标签页。

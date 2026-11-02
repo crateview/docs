@@ -11,7 +11,7 @@ Construye primero los contenedores de vista previa desde la revisión fijada; no
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
+git checkout 9954f9c33e34c65bab19378a9b488e9b8ed13b6d
 docker build -t crateview-registry-ui:next .
 ```
 <!-- release:installation:end -->
@@ -209,7 +209,7 @@ La CLI solicita la contraseña por separado del inicio de sesión de la interfaz
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
+git checkout 9954f9c33e34c65bab19378a9b488e9b8ed13b6d
 npm ci
 cp .env.example .env
 ```
@@ -246,6 +246,18 @@ Para una compilación local, utilice los archivos Compose del repositorio de ori
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
+git checkout 9954f9c33e34c65bab19378a9b488e9b8ed13b6d
 docker compose -f compose.yaml -f compose.build.yaml up --build -d
 ```
+
+<a id="pwa"></a>
+
+## Instalar como aplicación (PWA)
+
+Instala Crateview mediante la acción nativa de instalación o de añadir a la pantalla de inicio de un navegador compatible. Se abre en modo independiente. La aplicación sigue necesitando su servidor Nitro y un registro accesible.
+
+Usa HTTPS en producción; localhost sirve para las pruebas locales. El service worker solo está activo en las compilaciones de producción, no durante `npm run dev`. Compila e inicia el servidor de producción antes de probar la instalación o el comportamiento sin conexión.
+
+Tras una visita en línea y la instalación del service worker, abrir o recargar la aplicación sin red muestra un aviso de conexión. Reintentar recarga la URL original cuando vuelve la conexión. El idioma guardado tiene prioridad sobre los idiomas del navegador, con inglés como alternativa; árabe y urdu usan RTL.
+
+La página sin conexión solo se utiliza para navegaciones de documentos de la aplicación. Las respuestas del registro, de cuentas y de sesiones no se guardan en Cache Storage; no hay navegación del registro sin conexión. Las pantallas abiertas conservan sus errores habituales. El tráfico de API y `/v2/` no se sustituye por HTML sin conexión y las actualizaciones del worker no fuerzan la recarga de pestañas.

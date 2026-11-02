@@ -11,7 +11,7 @@ Bangun kontainer pratinjau secara lokal dari revisi tetap; tidak diasumsikan ada
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
+git checkout 9954f9c33e34c65bab19378a9b488e9b8ed13b6d
 docker build -t crateview-registry-ui:next .
 ```
 <!-- release:installation:end -->
@@ -209,7 +209,7 @@ CLI meminta kata sandi secara terpisah dari login UI. Lihat [autentikasi](/id/do
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
+git checkout 9954f9c33e34c65bab19378a9b488e9b8ed13b6d
 npm ci
 cp .env.example .env
 ```
@@ -246,6 +246,18 @@ Untuk build lokal, gunakan Compose file dari repositori sumber:
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
+git checkout 9954f9c33e34c65bab19378a9b488e9b8ed13b6d
 docker compose -f compose.yaml -f compose.build.yaml up --build -d
 ```
+
+<a id="pwa"></a>
+
+## Pasang sebagai aplikasi (PWA)
+
+Pasang Crateview melalui tindakan pemasangan atau Tambahkan ke Layar Utama bawaan browser yang mendukungnya. Aplikasi terbuka dalam mode mandiri, tetapi tetap memerlukan server Nitro dan registri yang dapat dijangkau.
+
+Gunakan HTTPS dalam produksi; localhost sesuai untuk pengujian lokal. Service worker hanya aktif dalam build produksi, bukan saat `npm run dev`. Bangun dan jalankan server produksi sebelum menguji.
+
+Setelah kunjungan online berhasil dan service worker terpasang, membuka atau memuat ulang aplikasi tanpa jaringan menampilkan pesan koneksi. Coba lagi memuat ulang URL asal setelah jaringan pulih. Pilihan bahasa tersimpan didahulukan dari bahasa browser, dengan bahasa Inggris sebagai cadangan; Arab dan Urdu menggunakan RTL.
+
+Halaman offline hanya menangani navigasi dokumen aplikasi. Respons registri, akun, dan sesi tidak disimpan di Cache Storage; penelusuran registri offline tidak tersedia. Layar terbuka tetap memakai penanganan galat biasa. Lalu lintas API dan `/v2/` tidak diganti HTML offline; pembaruan worker tidak memaksa tab dimuat ulang.

@@ -58,7 +58,7 @@ Docker 和其他 CLI 客户端使用其正常的镜像仓库凭据直接通过 `
 
 显式启用 `NUXT_AUTH_MODE=htpasswd` 或 `token` 并配置内部 `NUXT_AUTH_SERVICE_URL` 和仅服务器 `NUXT_AUTH_SERVICE_SECRET`。令牌模式还需要 `NUXT_AUTH_TOKEN_REALM` 与公共令牌端点完全匹配。匿名镜像仓库和外部令牌服务不支持本地帐户管理。仓库权限通过认证 CLI 管理；界面仅以只读方式显示。
 
-请参阅[帐户服务指南](https://github.com/crateview/registry-ui/blob/3844d7605dac80d0d58999201c43e94c644d72c0/auth/README.md)，了解 Compose 覆盖、设置、迁移和 CLI 命令。将公共 Docker 访问直接路由到镜像仓库，独立于 UI。之前颁发的令牌在密码更改或权限撤销后最多五分钟内仍然有效。
+请参阅[帐户服务指南](https://github.com/crateview/registry-ui/blob/9954f9c33e34c65bab19378a9b488e9b8ed13b6d/auth/README.md)，了解 Compose 覆盖、设置、迁移和 CLI 命令。将公共 Docker 访问直接路由到镜像仓库，独立于 UI。之前颁发的令牌在密码更改或权限撤销后最多五分钟内仍然有效。
 
 管理区域包含设置和用户。账户菜单也提供语言和主题。账户页面要求当前密码才能修改自己的密码。只有服务器允许名单授权的用户才能列出和创建账户；令牌权限只读。新密码至少12个字符且最多72个UTF-8字节。新令牌账户最初无仓库访问权。
 

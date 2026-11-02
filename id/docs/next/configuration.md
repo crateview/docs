@@ -70,3 +70,16 @@ Pemantauan opsional dan nonaktif secara default. Ringkasan membuka dasbor jika a
 Administrasi mengelompokkan Pengaturan dan Pengguna. Menu akun juga menawarkan bahasa dan tema. Akun mengubah kata sandi sendiri setelah memverifikasi yang sekarang. Daftar izin server mengontrol daftar dan pembuatan akun; izin token hanya baca. Kata sandi baru minimal 12 karakter dan maksimal 72 byte UTF-8. Akun token baru belum memiliki akses repositori.
 
 Daftar izin server mengontrol daftar, pembuatan, pengaturan ulang kata sandi, dan penghapusan akun. Menu tiga titik di sebelah kanan memungkinkan administrator mengatur ulang kata sandi pengguna lain tanpa kata sandi lama atau menghapus akun tersebut setelah konfirmasi. Pengaturan ulang mempertahankan izin repositori; penghapusan menghapusnya. Menu akun Anda sendiri membuka Akun untuk mengubah kata sandi dengan kata sandi saat ini; penghapusan akun sendiri diblokir.
+
+## Konfigurasi ikon PWA
+
+| Variabel | Nilai bawaan | Tujuan |
+| --- | --- | --- |
+| `NUXT_PUBLIC_BRAND_PWA_ICON_192` | `/branding/pwa-192.png` | URL ikon pemasangan 192 piksel. |
+| `NUXT_PUBLIC_BRAND_PWA_ICON_512` | `/branding/pwa-512.png` | URL ikon pemasangan 512 piksel. |
+| `NUXT_BRAND_PWA_ICON_192_FILE` | — | Berkas PNG privat 192 piksel yang diprioritaskan. |
+| `NUXT_BRAND_PWA_ICON_512_FILE` | — | Berkas PNG privat 512 piksel yang diprioritaskan. |
+
+Berkas lokal mengesampingkan URL publik masing-masing. Berkas harus berupa PNG yang dapat dibaca, tidak kosong, dan berukuran persegi tepat. Berkas tidak valid mencegah server berjalan. Jalur relatif memakai direktori kerja server; jalur kontainer harus menunjuk berkas yang dapat dibaca di dalamnya. Mulai ulang setelah perubahan.
+
+URL ikon lokal dan manifes mengikuti `NUXT_APP_BASE_URL`, misalnya `/registry/`; URL HTTP(S) eksternal dipertahankan. Variabel berkas privat bukan tempat menyimpan rahasia: gambar tersedia publik, tetapi jalur sistem berkas tetap di server.

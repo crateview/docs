@@ -45,3 +45,9 @@ Administration bündelt Einstellungen und Benutzer. Das Kontomenü bietet zusät
 Die Server-Allowlist steuert Auflisten, Anlegen, Passwort-Resets und Löschen von Konten. Im rechtsbündigen Drei-Punkte-Menü können Administratoren fremde Passwörter ohne das bisherige Passwort zurücksetzen und andere Konten nach Bestätigung löschen. Passwort-Resets erhalten Repository-Rechte; beim Löschen werden sie entfernt. Das eigene Menü öffnet Konto für eine Passwortänderung mit dem aktuellen Passwort; Selbstlöschung ist gesperrt.
 
 Beginne mit der [Installation](/de/docs/next/installation) und prüfe anschließend [Konfiguration](/de/docs/next/configuration) und [Authentifizierung](/de/docs/next/authentication).
+
+## Als App installieren (PWA)
+
+Installierbare App mit lokalisiertem Offline-Starthinweis, Wiederholen-Aktion und konfigurierbaren Icons. Registry-Zugriff und Kontoaktionen benötigen eine Netzwerkverbindung.
+
+[Als App installieren (PWA)](/de/docs/next/installation#pwa)

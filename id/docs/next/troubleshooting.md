@@ -47,3 +47,9 @@ Jika Anda menemukan masalah UI yang dapat direproduksi, buka [issue](https://git
 Konfigurasi versi ini: [Pemantauan](/id/docs/next/monitoring).
 
 Konfigurasi versi ini — Pemantauan opsional dan nonaktif secara default. Ringkasan membuka dasbor jika aktif; selain itu /home mengalihkan ke /explore. Aktivasi membuka data operasional global bagi semua pengakses UI, termasuk pengunjung anonim registri publik. Mode token terkelola juga memerlukan izin baca global.
+
+## Pemasangan PWA atau pembukaan offline gagal
+
+Periksa dukungan browser, HTTPS atau localhost, dan build produksi. Kunjungi aplikasi online terlebih dahulu dan biarkan worker terpasang. Permintaan `manifest.webmanifest` dan `sw.js` harus mencapai Crateview melalui `NUXT_APP_BASE_URL`; proksi balik harus mempertahankan prefiks dan menyajikan manifes serta JavaScript yang benar.
+
+Pesan offline wajar ketika jaringan tidak tersedia dan tidak menyediakan data repositori atau akun tersimpan. Sambungkan kembali dan coba lagi. Untuk ikon keliru, periksa ukuran PNG, izin baca jalur kontainer, prioritas berkas, dan galat saat server dimulai; mulai ulang setelah perubahan. Browser mungkin menyegarkan ikon belakangan.

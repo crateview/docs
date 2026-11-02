@@ -45,3 +45,9 @@ Administration groups Settings and Users. The account menu also offers language 
 The server allowlist controls listing, creation, password resets and account deletion. The right-aligned three-dot menu lets administrators reset another user's password without the old password or delete that account after confirmation. Resets preserve repository grants; deletion removes them. Your own menu opens Account for a password change with the current password; self-deletion is blocked.
 
 Start with [installation](/docs/next/installation), then review [configuration](/docs/next/configuration) and [authentication](/docs/next/authentication).
+
+## Install as an app (PWA)
+
+Installable app with a localized offline-start message, retry and configurable app icons. Registry browsing and account actions require a network connection.
+
+[Install as an app (PWA)](/docs/next/installation#pwa)

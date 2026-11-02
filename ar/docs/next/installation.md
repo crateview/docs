@@ -11,7 +11,7 @@ description: "ابدأ تشغيل المكدس الكامل أو قم بتوصي
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
+git checkout 9954f9c33e34c65bab19378a9b488e9b8ed13b6d
 docker build -t crateview-registry-ui:next .
 ```
 <!-- release:installation:end -->
@@ -209,7 +209,7 @@ docker pull registry.example.com/alpine:latest
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
+git checkout 9954f9c33e34c65bab19378a9b488e9b8ed13b6d
 npm ci
 cp .env.example .env
 ```
@@ -246,6 +246,18 @@ NUXT_REGISTRY_UPSTREAM=http://127.0.0.1:5000 HOST=127.0.0.1 PORT=3000 npm start
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
+git checkout 9954f9c33e34c65bab19378a9b488e9b8ed13b6d
 docker compose -f compose.yaml -f compose.build.yaml up --build -d
 ```
+
+<a id="pwa"></a>
+
+## التثبيت كتطبيق (PWA)
+
+ثبّت Crateview باستخدام خيار التثبيت أو الإضافة إلى الشاشة الرئيسية في متصفح مدعوم. يفتح التطبيق في وضع مستقل، لكنه لا يزال يحتاج إلى خادم Nitro وسجل يمكن الوصول إليه.
+
+استخدم HTTPS في الإنتاج؛ ويمكن استخدام localhost للاختبار المحلي. يعمل service worker في إصدارات الإنتاج فقط، وليس أثناء `npm run dev`. ابنِ خادم الإنتاج وشغّله قبل الاختبار.
+
+بعد زيارة ناجحة عبر الشبكة وتثبيت service worker، يظهر تنبيه اتصال عند فتح التطبيق أو إعادة تحميله دون شبكة. تعيد المحاولة تحميل عنوان URL الأصلي بعد عودة الاتصال. تتقدم اللغة المحفوظة على لغات المتصفح، مع الإنجليزية كخيار احتياطي؛ وتستخدم العربية والأردية RTL.
+
+تُستخدم صفحة عدم الاتصال لتنقلات مستندات التطبيق فقط. لا تُحفظ استجابات السجل والحسابات والجلسات في Cache Storage، ولا يتوفر تصفح السجل دون اتصال. تحتفظ الشاشات المفتوحة بمعالجة أخطائها المعتادة. لا تُستبدل حركة API و`/v2/` بصفحة HTML دون اتصال، ولا تفرض تحديثات worker إعادة تحميل علامات التبويب.

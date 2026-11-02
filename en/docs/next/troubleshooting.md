@@ -47,3 +47,9 @@ If you find a reproducible UI issue, open an [issue](https://github.com/cratevie
 Version-specific configuration: [Monitoring](/docs/next/monitoring).
 
 Version-specific configuration — Monitoring is optional and disabled by default. Overview opens the dashboard when enabled; otherwise /home redirects to /explore. Enabling monitoring exposes registry-wide operational data to everyone with UI access, including anonymous visitors of public registries. Managed token mode additionally requires a global read grant.
+
+## PWA installation or offline startup does not work
+
+Check browser installation support, HTTPS or localhost, and a production build. Visit the app online first and allow the worker to install. Requests for `manifest.webmanifest` and `sw.js` must reach Crateview under the configured `NUXT_APP_BASE_URL`; a reverse proxy must preserve that prefix and serve the correct manifest and JavaScript responses.
+
+An offline message is expected while the network is unavailable. It does not provide stored repository or account data. Reconnect and retry. For incorrect icons, check the exact PNG dimensions, readable container paths, the file-over-URL precedence and server startup errors; restart after changes. Browsers may refresh installed icons later.

@@ -47,3 +47,9 @@ Si encuentra un problema de interfaz de usuario reproducible, abra un [issue](ht
 Configuración de esta versión: [Monitorización](/es/docs/next/monitoring).
 
 Configuración de esta versión — La monitorización es opcional y está desactivada por defecto. Resumen abre el panel si está activada; si no, /home redirige a /explore. Activarla da datos operativos globales a todos con acceso a la UI, incluso visitantes anónimos de registros públicos. El modo token gestionado requiere además lectura global.
+
+## La instalación PWA o el inicio sin conexión no funciona
+
+Comprueba la compatibilidad del navegador, HTTPS o localhost y la compilación de producción. Visita primero la aplicación en línea y permite instalar el worker. Las solicitudes de `manifest.webmanifest` y `sw.js` deben llegar a Crateview bajo `NUXT_APP_BASE_URL`; el proxy inverso debe conservar ese prefijo y entregar respuestas correctas de manifiesto y JavaScript.
+
+El aviso sin conexión es normal cuando no hay red; no ofrece datos de repositorios o cuentas almacenados. Vuelve a conectarte y reintenta. Si los iconos son incorrectos, revisa las dimensiones PNG exactas, los permisos de las rutas del contenedor, la prioridad de archivos sobre URL y los errores de inicio; reinicia tras los cambios. El navegador puede actualizar los iconos más tarde.

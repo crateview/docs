@@ -45,3 +45,9 @@ Administration regroupe Paramètres et Utilisateurs. Le menu du compte propose a
 La liste d’autorisation du serveur contrôle la consultation, la création, la réinitialisation des mots de passe et la suppression des comptes. Le menu à trois points aligné à droite permet aux administrateurs de réinitialiser le mot de passe d’un autre utilisateur sans son ancien mot de passe ou de supprimer son compte après confirmation. La réinitialisation conserve les droits sur les dépôts ; la suppression les retire. Votre propre menu ouvre Compte pour changer votre mot de passe avec le mot de passe actuel ; la suppression de votre propre compte est bloquée.
 
 Commencez par [installation](/fr/docs/next/installation), puis examinez [configuration](/fr/docs/next/configuration) et [authentication](/fr/docs/next/authentication).
+
+## Installer comme application (PWA)
+
+Application installable avec message de démarrage hors ligne traduit, nouvel essai et icônes configurables. La consultation du registre et les actions de compte nécessitent le réseau.
+
+[Installer comme application (PWA)](/fr/docs/next/installation#pwa)

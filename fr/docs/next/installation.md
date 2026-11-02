@@ -11,7 +11,7 @@ Construisez les conteneurs d'aperçu depuis la révision fixée ; aucune image d
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
+git checkout 9954f9c33e34c65bab19378a9b488e9b8ed13b6d
 docker build -t crateview-registry-ui:next .
 ```
 <!-- release:installation:end -->
@@ -209,7 +209,7 @@ La CLI demande le mot de passe séparément de la connexion à l'interface utili
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
+git checkout 9954f9c33e34c65bab19378a9b488e9b8ed13b6d
 npm ci
 cp .env.example .env
 ```
@@ -246,6 +246,18 @@ Pour une build locale, utilisez les fichiers Compose du référentiel source :
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
+git checkout 9954f9c33e34c65bab19378a9b488e9b8ed13b6d
 docker compose -f compose.yaml -f compose.build.yaml up --build -d
 ```
+
+<a id="pwa"></a>
+
+## Installer comme application (PWA)
+
+Installez Crateview avec l’action native d’installation ou d’ajout à l’écran d’accueil d’un navigateur compatible. L’application s’ouvre en mode autonome. Elle nécessite toujours son serveur Nitro et un registre accessible.
+
+Utilisez HTTPS en production ; localhost convient aux essais locaux. Le service worker est actif uniquement dans les builds de production, pas pendant `npm run dev`. Compilez et démarrez le serveur de production avant de tester l’installation ou le mode hors ligne.
+
+Après une visite en ligne réussie et l’installation du service worker, un démarrage ou rechargement sans réseau affiche un message de connexion. Réessayer recharge l’URL d’origine lorsque la connexion revient. La langue enregistrée prime sur les langues du navigateur, avec l’anglais par défaut ; l’arabe et l’ourdou utilisent RTL.
+
+Le message hors ligne ne concerne que les navigations de documents de l’application. Les réponses du registre, des comptes et des sessions ne sont pas enregistrées dans Cache Storage ; la consultation hors ligne du registre est indisponible. Les écrans ouverts conservent leurs erreurs habituelles. Le trafic API et `/v2/` n’est pas remplacé par du HTML hors ligne ; les mises à jour du worker ne rechargent pas les onglets de force.

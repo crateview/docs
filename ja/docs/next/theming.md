@@ -78,3 +78,21 @@ services:
 ホストの `./branding` に 3 つのファイルを作成し、コンテナーの `node` ユーザーに読み取りを許可します。`docker compose -f compose.yaml -f compose.branding.yaml up -d` で起動します。マウントは読み取り専用です。設定するパスはコンテナー内のファイルを指します。これらの非公開ファイル変数はレジストリー UI に適用されます。
 
 Crateview Web サイトは、レジストリ UI のマーク、テーマのデフォルト、およびブランド変数名を再利用します。ウェブサイトは別個に管理されます。そのソースと展開構成は非公開です。そのドキュメントのソースは [crateview/docs](https://github.com/crateview/docs).
+
+## インストール済みアプリのブランド設定
+
+アプリには `NUXT_PUBLIC_BRAND_NAME` と `NUXT_PUBLIC_BRAND_DESCRIPTION` が使われます。PWA アイコンは明暗ロゴや favicon とは独立しています。192 ピクセル PNG は Apple タッチアイコンにも使われます。既定のアイコンは Crateview マークです。
+
+ホスト上に正確な 192×192 と 512×512 ピクセルの PNG を用意し、コンテナユーザーに読み取り権限を与えてください。次の追加設定は読み取り専用でマウントします。既存の Compose ファイルと組み合わせてください。URL を使う場合は `NUXT_PUBLIC_BRAND_PWA_ICON_192` と `NUXT_PUBLIC_BRAND_PWA_ICON_512` を設定します。
+
+```yaml
+services:
+  frontend:
+    volumes:
+      - ./branding:/app/branding:ro
+    environment:
+      NUXT_BRAND_PWA_ICON_192_FILE: /app/branding/pwa-192.png
+      NUXT_BRAND_PWA_ICON_512_FILE: /app/branding/pwa-512.png
+```
+
+インストール済みアプリのメタデータはブラウザーが管理するため、アイコン更新には時間がかかることがあります。Crateview の再起動で設定は適用されますが、既存アイコンの即時更新は保証されません。

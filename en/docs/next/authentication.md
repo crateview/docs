@@ -58,7 +58,7 @@ An independent auth/management service supports account creation and own-passwor
 
 Explicitly enable `NUXT_AUTH_MODE=htpasswd` or `token` and configure the internal `NUXT_AUTH_SERVICE_URL` and server-only `NUXT_AUTH_SERVICE_SECRET`. Token mode additionally requires `NUXT_AUTH_TOKEN_REALM` to match the public token endpoint exactly. Anonymous registries and external token services do not support local account management. Repository grants are managed through the auth CLI; the UI displays them read-only.
 
-See the [account service guide](https://github.com/crateview/registry-ui/blob/3844d7605dac80d0d58999201c43e94c644d72c0/auth/README.md) for Compose overlays, setup, migration and CLI commands. Route public Docker access directly to the registry independently of the UI. Previously issued tokens remain valid for up to five minutes after password changes or permission revocation.
+See the [account service guide](https://github.com/crateview/registry-ui/blob/9954f9c33e34c65bab19378a9b488e9b8ed13b6d/auth/README.md) for Compose overlays, setup, migration and CLI commands. Route public Docker access directly to the registry independently of the UI. Previously issued tokens remain valid for up to five minutes after password changes or permission revocation.
 
 Administration groups Settings and Users. The account menu also offers language and theme selection. Account changes your own password after confirming the current password. Users lists accounts and creates them only when the server allowlist permits it; token grants are read-only. New accounts require a password of at least 12 characters and at most 72 UTF-8 bytes. New token accounts start without repository access.
 

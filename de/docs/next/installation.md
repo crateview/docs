@@ -11,7 +11,7 @@ Vorschau-Container zuerst lokal aus der festgelegten Quellrevision bauen; ein ve
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
+git checkout 9954f9c33e34c65bab19378a9b488e9b8ed13b6d
 docker build -t crateview-registry-ui:next .
 ```
 <!-- release:installation:end -->
@@ -209,7 +209,7 @@ Die CLI fragt das Passwort getrennt von der UI-Anmeldung ab. Weitere Details: [A
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
+git checkout 9954f9c33e34c65bab19378a9b488e9b8ed13b6d
 npm ci
 cp .env.example .env
 ```
@@ -246,6 +246,18 @@ Für einen lokalen Build verwende die Compose-Dateien aus dem Quellrepository:
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
+git checkout 9954f9c33e34c65bab19378a9b488e9b8ed13b6d
 docker compose -f compose.yaml -f compose.build.yaml up --build -d
 ```
+
+<a id="pwa"></a>
+
+## Als App installieren (PWA)
+
+Installiere Crateview über die native Installieren- oder Zum-Startbildschirm-Aktion eines unterstützten Browsers. Die App öffnet sich im Standalone-Modus. Sie benötigt weiterhin ihren Nitro-Server und eine erreichbare Registry.
+
+Nutze HTTPS im Produktivbetrieb; localhost eignet sich für lokale Tests. Der Service Worker ist nur in Produktionsbuilds aktiv, nicht bei `npm run dev`. Baue und starte den Produktionsserver, bevor du Installation oder Offline-Verhalten prüfst.
+
+Nach einem erfolgreichen Online-Aufruf und der Installation des Service Workers erscheint beim Offline-Start oder Neuladen ein Verbindungshinweis. Erneut versuchen lädt nach der Wiederverbindung die ursprüngliche URL. Die gespeicherte Sprachwahl hat Vorrang vor den Browsersprachen; Englisch dient als Fallback. Arabisch und Urdu verwenden RTL.
+
+Nur Dokumentnavigationen der App nutzen den Offline-Hinweis. Registry-, Konto- und Sitzungsantworten werden nicht im Cache Storage gespeichert; Offline-Zugriff auf Registry-Daten ist nicht verfügbar. Bereits offene Ansichten behalten ihre üblichen Fehleranzeigen. API- und `/v2/`-Verkehr wird nicht durch Offline-HTML ersetzt; Worker-Updates erzwingen kein Neuladen offener Tabs.

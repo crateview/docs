@@ -47,3 +47,9 @@ Melde reproduzierbare UI-Fehler als [Issue](https://github.com/crateview/registr
 Versionsspezifische Konfiguration: [Monitoring](/de/docs/next/monitoring).
 
 Versionsspezifische Konfiguration — Monitoring ist optional und standardmäßig deaktiviert. Aktiviert öffnet Übersicht das Dashboard; sonst leitet /home auf /explore weiter. Aktivierung gibt allen Nutzern mit UI-Zugriff Registry-weite Betriebsdaten frei, bei öffentlichen Registries auch anonymen Besuchern. Verwalteter Token-Modus erfordert zusätzlich einen globalen Lese-Grant.
+
+## PWA-Installation oder Offline-Start funktioniert nicht
+
+Prüfe Browserunterstützung, HTTPS oder localhost sowie den Produktionsbuild. Öffne die App zuerst online und lasse den Worker installieren. Anfragen für `manifest.webmanifest` und `sw.js` müssen Crateview unter der konfigurierten `NUXT_APP_BASE_URL` erreichen; ein Reverse Proxy muss das Präfix erhalten und korrekte Manifest- und JavaScript-Antworten liefern.
+
+Bei fehlender Netzwerkverbindung ist der Offline-Hinweis vorgesehen. Er stellt keine gespeicherten Repository- oder Kontodaten bereit. Verbinde dich erneut und versuche es noch einmal. Prüfe bei falschen Icons die exakten PNG-Maße, lesbare Containerpfade, den Vorrang lokaler Dateien und Startfehler; nach Änderungen neu starten. Browser aktualisieren installierte Icons unter Umständen später.
