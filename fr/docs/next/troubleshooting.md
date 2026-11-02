@@ -47,3 +47,9 @@ Si vous trouvez un problème d'interface utilisateur reproductible, ouvrez un [i
 Configuration de cette version: [Supervision](/fr/docs/next/monitoring).
 
 Configuration de cette version — La supervision est facultative et désactivée par défaut. La vue d'ensemble affiche le tableau de bord si elle est active ; sinon /home redirige vers /explore. L'activer expose les données globales à toute personne ayant accès à l'interface, y compris les visiteurs anonymes des registres publics. Le mode à jetons géré exige aussi un droit de lecture global.
+
+## L’installation PWA ou le démarrage hors ligne échoue
+
+Vérifiez la prise en charge du navigateur, HTTPS ou localhost et le build de production. Visitez d’abord l’application en ligne et laissez le worker s’installer. Les requêtes pour `manifest.webmanifest` et `sw.js` doivent atteindre Crateview sous `NUXT_APP_BASE_URL` ; le proxy inverse doit conserver ce préfixe et fournir les bonnes réponses de manifeste et JavaScript.
+
+Le message hors ligne est attendu sans réseau ; il ne fournit aucune donnée de dépôt ou de compte enregistrée. Reconnectez-vous et réessayez. Si les icônes sont incorrectes, vérifiez les dimensions PNG exactes, les chemins lisibles dans le conteneur, la priorité des fichiers et les erreurs au démarrage ; redémarrez après modification. Le navigateur peut actualiser les icônes plus tard.

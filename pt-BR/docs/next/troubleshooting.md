@@ -47,3 +47,9 @@ Se você encontrar um problema de IU reproduzível, abra um [issue](https://gith
 Configuração desta versão: [Monitoramento](/pt-BR/docs/next/monitoring).
 
 Configuração desta versão — Monitoramento opcional, desativado por padrão. Visão geral abre o painel quando ativo; caso contrário /home redireciona para /explore. A ativação expõe dados globais a todos com acesso à interface, incluindo visitantes anônimos em registros públicos. O modo token gerenciado exige leitura global adicional.
+
+## A instalação PWA ou a inicialização offline falha
+
+Confira o suporte do navegador, HTTPS ou localhost e o build de produção. Acesse online primeiro e deixe o worker instalar. As solicitações de `manifest.webmanifest` e `sw.js` precisam alcançar o Crateview sob `NUXT_APP_BASE_URL`; o proxy reverso deve preservar o prefixo e fornecer manifesto e JavaScript corretos.
+
+O aviso offline é esperado sem rede e não fornece dados de repositórios ou contas armazenados. Reconecte e tente novamente. Para ícones incorretos, confira dimensões PNG, leitura dos caminhos no contêiner, prioridade dos arquivos e erros de inicialização; reinicie após alterações. O navegador pode atualizar ícones mais tarde.

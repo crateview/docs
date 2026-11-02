@@ -78,3 +78,21 @@ services:
 Créez les trois fichiers dans `./branding` sur l’hôte et autorisez l’utilisateur `node` du conteneur à les lire. Lancez `docker compose -f compose.yaml -f compose.branding.yaml up -d`. Le montage est en lecture seule ; les chemins configurés désignent les fichiers dans le conteneur. Ces variables de fichiers privées concernent l’interface du registre.
 
 Le site Web Crateview réutilise la marque de l'interface utilisateur du registre, les valeurs par défaut du thème et les noms des variables de marque. Le site Web est géré séparément ; sa source et sa configuration de déploiement sont privées. Ses sources de documentation sont publiques dans [crateview/docs](https://github.com/crateview/docs).
+
+## Personnaliser l’application installée
+
+L’application installée utilise `NUXT_PUBLIC_BRAND_NAME` et `NUXT_PUBLIC_BRAND_DESCRIPTION`. Les icônes PWA sont indépendantes des logos clair/sombre et du favicon. Le PNG de 192 pixels sert aussi d’icône tactile Apple. Les icônes par défaut utilisent le symbole Crateview.
+
+Créez sur l’hôte les deux PNG d’exactement 192×192 et 512×512 pixels, lisibles par l’utilisateur du conteneur. La surcharge suivante les monte en lecture seule ; combinez-la à votre fichier Compose existant. Pour des URL, utilisez `NUXT_PUBLIC_BRAND_PWA_ICON_192` et `NUXT_PUBLIC_BRAND_PWA_ICON_512`.
+
+```yaml
+services:
+  frontend:
+    volumes:
+      - ./branding:/app/branding:ro
+    environment:
+      NUXT_BRAND_PWA_ICON_192_FILE: /app/branding/pwa-192.png
+      NUXT_BRAND_PWA_ICON_512_FILE: /app/branding/pwa-512.png
+```
+
+Les changements d’icônes peuvent apparaître avec un délai, car les navigateurs gèrent les métadonnées des applications installées. Redémarrer Crateview applique la configuration, mais ne garantit pas une mise à jour immédiate des icônes existantes.

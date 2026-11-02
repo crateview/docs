@@ -11,7 +11,7 @@ description: "مکمل اسٹیک شروع کریں یا UI کو موجودہ ر
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
+git checkout 9954f9c33e34c65bab19378a9b488e9b8ed13b6d
 docker build -t crateview-registry-ui:next .
 ```
 <!-- release:installation:end -->
@@ -209,7 +209,7 @@ CLI UI لاگ ان سے الگ پاس ورڈ کا اشارہ کرتا ہے۔ ت�
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
+git checkout 9954f9c33e34c65bab19378a9b488e9b8ed13b6d
 npm ci
 cp .env.example .env
 ```
@@ -246,6 +246,18 @@ Crateview کو تصدیق اور API پراکسینگ کے لیے اس کے Nitr
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
+git checkout 9954f9c33e34c65bab19378a9b488e9b8ed13b6d
 docker compose -f compose.yaml -f compose.build.yaml up --build -d
 ```
+
+<a id="pwa"></a>
+
+## بطور ایپ انسٹال کریں (PWA)
+
+کسی معاون براؤزر کے اصل انسٹال یا ہوم اسکرین پر شامل کرنے کے اختیار سے Crateview انسٹال کریں۔ یہ الگ ونڈو میں کھلتا ہے، لیکن Nitro سرور اور قابل رسائی رجسٹری اب بھی ضروری ہیں۔
+
+پروڈکشن میں HTTPS استعمال کریں؛ مقامی آزمائش کے لیے localhost مناسب ہے۔ service worker صرف پروڈکشن بلڈ میں فعال ہوتا ہے، `npm run dev` کے دوران نہیں۔ آزمائش سے پہلے پروڈکشن سرور بلڈ کرکے چلائیں۔
+
+کامیاب آن لائن وزٹ اور service worker کی تنصیب کے بعد، نیٹ ورک کے بغیر ایپ کھولنے یا دوبارہ لوڈ کرنے پر رابطے کا پیغام ظاہر ہوتا ہے۔ رابطہ بحال ہونے پر دوبارہ کوشش اصل URL لوڈ کرتی ہے۔ محفوظ زبان براؤزر کی زبانوں پر مقدم ہے، اور متبادل انگریزی ہے؛ عربی اور اردو RTL استعمال کرتی ہیں۔
+
+آف لائن صفحہ صرف ایپ کے دستاویزی نیویگیشن کے لیے ہے۔ رجسٹری، اکاؤنٹ اور سیشن کے جوابات Cache Storage میں محفوظ نہیں ہوتے؛ آف لائن رجسٹری براؤزنگ دستیاب نہیں۔ کھلی اسکرینوں پر معمول کے خرابی پیغامات برقرار رہتے ہیں۔ API اور `/v2/` ٹریفک کو آف لائن HTML سے تبدیل نہیں کیا جاتا، اور worker کی اپ ڈیٹس ٹیب زبردستی دوبارہ لوڈ نہیں کرتیں۔

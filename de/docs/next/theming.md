@@ -78,3 +78,21 @@ services:
 Lege die drei Dateien auf dem Host unter `./branding` an und erlaube dem Container-Benutzer `node` den Lesezugriff. Starte mit `docker compose -f compose.yaml -f compose.branding.yaml up -d`. Der Mount ist schreibgeschützt; konfigurierte Pfade beziehen sich auf Dateien im Container. Diese privaten Datei-Variablen gelten für das Registry-UI.
 
 Die Crateview-Website übernimmt Logo, Theme-Defaults und Branding-Variablennamen aus dem Registry-UI. Die Website wird separat gepflegt; ihr Quellcode und ihre Deployment-Konfiguration sind privat. Die Dokumentationsquellen sind öffentlich in [crateview/docs](https://github.com/crateview/docs).
+
+## Branding der installierten App
+
+Die installierte App übernimmt `NUXT_PUBLIC_BRAND_NAME` und `NUXT_PUBLIC_BRAND_DESCRIPTION`. Eigene PWA-Icons sind unabhängig von Hell-/Dunkel-Logos und Favicon. Das PNG mit 192 Pixeln dient auch als Apple-Touch-Icon. Standardmäßig wird das Crateview-Zeichen verwendet.
+
+Erstelle die beiden PNG-Dateien mit exakt 192×192 und 512×512 Pixeln auf dem Host und gewähre dem Containerbenutzer Lesezugriff. Das folgende Overlay bindet sie schreibgeschützt ein; kombiniere es mit deiner bestehenden Compose-Datei. URL-Overrides verwenden stattdessen `NUXT_PUBLIC_BRAND_PWA_ICON_192` und `NUXT_PUBLIC_BRAND_PWA_ICON_512`.
+
+```yaml
+services:
+  frontend:
+    volumes:
+      - ./branding:/app/branding:ro
+    environment:
+      NUXT_BRAND_PWA_ICON_192_FILE: /app/branding/pwa-192.png
+      NUXT_BRAND_PWA_ICON_512_FILE: /app/branding/pwa-512.png
+```
+
+Icon-Änderungen erscheinen in bestehenden Installationen möglicherweise verzögert, da Browser die App-Metadaten verwalten. Ein Neustart von Crateview übernimmt die Laufzeitkonfiguration, garantiert aber keine sofortige Aktualisierung installierter Icons.

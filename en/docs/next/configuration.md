@@ -70,3 +70,16 @@ Monitoring is optional and disabled by default. Overview opens the dashboard whe
 Administration groups Settings and Users. The account menu also offers language and theme selection. Account changes your own password after confirming the current password. Users lists accounts and creates them only when the server allowlist permits it; token grants are read-only. New accounts require a password of at least 12 characters and at most 72 UTF-8 bytes. New token accounts start without repository access.
 
 The server allowlist controls listing, creation, password resets and account deletion. The right-aligned three-dot menu lets administrators reset another user's password without the old password or delete that account after confirmation. Resets preserve repository grants; deletion removes them. Your own menu opens Account for a password change with the current password; self-deletion is blocked.
+
+## PWA icon configuration
+
+| Variable | Default | Purpose |
+| --- | --- | --- |
+| `NUXT_PUBLIC_BRAND_PWA_ICON_192` | `/branding/pwa-192.png` | 192-pixel install icon URL. |
+| `NUXT_PUBLIC_BRAND_PWA_ICON_512` | `/branding/pwa-512.png` | 512-pixel install icon URL. |
+| `NUXT_BRAND_PWA_ICON_192_FILE` | — | Private 192-pixel PNG file override. |
+| `NUXT_BRAND_PWA_ICON_512_FILE` | — | Private 512-pixel PNG file override. |
+
+Local icon files override their corresponding public URLs. They must be readable, nonempty PNGs with the exact square dimensions. Invalid files prevent server startup. Relative file paths resolve against the server working directory; container paths must refer to readable files inside the container. Restart after changing configuration.
+
+Local icon URLs and the manifest respect `NUXT_APP_BASE_URL`, for example `/registry/`; external HTTP(S) icon URLs are preserved. Never use the private file variables for secrets: their image bytes are public, although their filesystem paths remain server-side.

@@ -11,7 +11,7 @@ description: "完全なスタックを開始するか、UI を既存のレジス
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
+git checkout 9954f9c33e34c65bab19378a9b488e9b8ed13b6d
 docker build -t crateview-registry-ui:next .
 ```
 <!-- release:installation:end -->
@@ -209,7 +209,7 @@ CLI は、UI ログインとは別にパスワードの入力を求めます。�
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
+git checkout 9954f9c33e34c65bab19378a9b488e9b8ed13b6d
 npm ci
 cp .env.example .env
 ```
@@ -246,6 +246,18 @@ Crateview は、認証と API プロキシのために Nitro サーバーを必�
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
+git checkout 9954f9c33e34c65bab19378a9b488e9b8ed13b6d
 docker compose -f compose.yaml -f compose.build.yaml up --build -d
 ```
+
+<a id="pwa"></a>
+
+## アプリとしてインストール（PWA）
+
+対応ブラウザーの標準インストール機能またはホーム画面への追加機能で Crateview をインストールします。独立したウィンドウで開きますが、Nitro サーバーと接続可能なレジストリは引き続き必要です。
+
+本番環境では HTTPS を使用してください。localhost はローカルテストに利用できます。Service Worker は本番ビルドでのみ有効で、`npm run dev` では動作しません。テスト前に本番サーバーをビルドして起動してください。
+
+オンラインで正常にアクセスし Service Worker がインストールされた後は、ネットワークなしで起動または再読み込みすると接続メッセージが表示されます。再試行すると、接続復旧後に元の URL を再読み込みします。保存済みの言語をブラウザー言語より優先し、英語にフォールバックします。アラビア語とウルドゥー語は RTL を使用します。
+
+オフライン表示はアプリのドキュメントナビゲーションのみが対象です。レジストリ、アカウント、セッションの応答は Cache Storage に保存せず、オフラインでのレジストリ閲覧はできません。既存画面のエラー表示は変わりません。API と `/v2/` の通信をオフライン HTML に置き換えず、Worker 更新でタブを強制再読み込みしません。

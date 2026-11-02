@@ -11,7 +11,7 @@ Preview containers must first be built locally from the pinned source revision; 
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
+git checkout 9954f9c33e34c65bab19378a9b488e9b8ed13b6d
 docker build -t crateview-registry-ui:next .
 ```
 <!-- release:installation:end -->
@@ -209,7 +209,7 @@ The CLI prompts for the password separately from the UI login. See [authenticati
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
+git checkout 9954f9c33e34c65bab19378a9b488e9b8ed13b6d
 npm ci
 cp .env.example .env
 ```
@@ -246,6 +246,18 @@ For a local build, use the Compose files from the source repository:
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
+git checkout 9954f9c33e34c65bab19378a9b488e9b8ed13b6d
 docker compose -f compose.yaml -f compose.build.yaml up --build -d
 ```
+
+<a id="pwa"></a>
+
+## Install as an app (PWA)
+
+Install Crateview through the native install or Add to Home Screen action of a supported browser. It opens in standalone mode. The application still needs its Nitro server and a reachable registry.
+
+Use HTTPS in production; localhost is suitable for local testing. The service worker is enabled only in production builds, not during `npm run dev`. Build and start the production server before testing installation or offline behavior.
+
+After a successful online visit and service-worker installation, opening or reloading the app without a network connection shows a connection message. Retry reloads the original URL after connectivity returns. The saved language choice takes precedence over browser languages, with English fallback; Arabic and Urdu use RTL.
+
+Only app document navigations use the offline fallback. Registry, account and session responses are not saved to Cache Storage; there is no offline registry browsing. Existing open screens retain their normal request-error behavior. API and `/v2/` traffic is not replaced with offline HTML, and worker updates do not force open tabs to reload.

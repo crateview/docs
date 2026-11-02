@@ -11,7 +11,7 @@ Compile contêineres de prévia localmente da revisão fixada; não se presume i
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
+git checkout 9954f9c33e34c65bab19378a9b488e9b8ed13b6d
 docker build -t crateview-registry-ui:next .
 ```
 <!-- release:installation:end -->
@@ -209,7 +209,7 @@ A CLI solicita a senha separadamente do login da UI. Consulte [autenticação](/
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
+git checkout 9954f9c33e34c65bab19378a9b488e9b8ed13b6d
 npm ci
 cp .env.example .env
 ```
@@ -246,6 +246,18 @@ Para uma compilação local, use os arquivos Compose do repositório de origem:
 ```sh
 git clone https://github.com/crateview/registry-ui.git
 cd registry-ui
-git checkout 3844d7605dac80d0d58999201c43e94c644d72c0
+git checkout 9954f9c33e34c65bab19378a9b488e9b8ed13b6d
 docker compose -f compose.yaml -f compose.build.yaml up --build -d
 ```
+
+<a id="pwa"></a>
+
+## Instalar como aplicativo (PWA)
+
+Instale o Crateview pela ação nativa de instalação ou de adicionar à tela inicial de um navegador compatível. Ele abre em modo independente, mas continua precisando do servidor Nitro e de um registro acessível.
+
+Use HTTPS em produção; localhost permite testes locais. O service worker funciona somente em builds de produção, não durante `npm run dev`. Compile e inicie o servidor de produção antes dos testes.
+
+Após uma visita online bem-sucedida e a instalação do service worker, abrir ou recarregar o app sem rede mostra um aviso. Tentar novamente recarrega a URL original quando a conexão voltar. O idioma salvo prevalece sobre os idiomas do navegador, com inglês como alternativa; árabe e urdu usam RTL.
+
+O aviso offline atende somente navegações de documentos do app. Respostas do registro, de contas e de sessões não são salvas no Cache Storage; não há navegação offline no registro. Telas abertas mantêm os erros habituais. O tráfego de API e `/v2/` não recebe HTML offline; atualizações do worker não forçam a recarga de abas.

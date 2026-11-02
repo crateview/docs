@@ -70,3 +70,16 @@ La monitorización es opcional y está desactivada por defecto. Resumen abre el 
 Administración agrupa Ajustes y Usuarios. El menú de cuenta también ofrece idioma y tema. Cuenta cambia tu contraseña previa confirmación de la actual. Usuarios solo permite listar y crear cuentas según la lista del servidor; los permisos de token son de solo lectura. Las contraseñas nuevas requieren 12 caracteres como mínimo y 72 bytes UTF-8 como máximo. Las cuentas de token nuevas no tienen acceso inicial.
 
 La lista de permisos del servidor controla la consulta, creación, restablecimiento de contraseñas y eliminación de cuentas. El menú de tres puntos alineado a la derecha permite a los administradores restablecer la contraseña de otro usuario sin la anterior o eliminar su cuenta tras confirmar. El restablecimiento conserva los permisos de los repositorios; la eliminación los retira. Tu propio menú abre Cuenta para cambiar la contraseña con la actual; no puedes eliminar tu propia cuenta.
+
+## Configuración de iconos PWA
+
+| Variable | Predeterminado | Propósito |
+| --- | --- | --- |
+| `NUXT_PUBLIC_BRAND_PWA_ICON_192` | `/branding/pwa-192.png` | URL del icono de instalación de 192 píxeles. |
+| `NUXT_PUBLIC_BRAND_PWA_ICON_512` | `/branding/pwa-512.png` | URL del icono de instalación de 512 píxeles. |
+| `NUXT_BRAND_PWA_ICON_192_FILE` | — | Archivo PNG privado de 192 píxeles prioritario. |
+| `NUXT_BRAND_PWA_ICON_512_FILE` | — | Archivo PNG privado de 512 píxeles prioritario. |
+
+Los archivos locales prevalecen sobre sus URL públicas correspondientes. Deben ser PNG legibles, no vacíos y con las dimensiones cuadradas exactas. Los archivos inválidos impiden iniciar el servidor. Las rutas relativas parten del directorio de trabajo del servidor; las rutas del contenedor deben señalar archivos legibles dentro de él. Reinicia tras cambiar la configuración.
+
+Las URL locales de iconos y el manifiesto respetan `NUXT_APP_BASE_URL`, por ejemplo `/registry/`; las URL HTTP(S) externas se conservan. Las variables de archivos privados no sirven para secretos: los bytes de la imagen son públicos, aunque las rutas del sistema de archivos permanecen en el servidor.

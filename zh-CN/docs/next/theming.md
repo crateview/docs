@@ -78,3 +78,21 @@ services:
 在主机的 `./branding` 中创建这三个文件，并允许容器的 `node` 用户读取。运行 `docker compose -f compose.yaml -f compose.branding.yaml up -d`。挂载为只读；配置的路径指向容器内的文件。这些私有文件变量适用于注册表 UI。
 
 Crateview 网站重复使用镜像仓库 UI 的标记、主题默认值和品牌变量名称。网站单独维护；它的源和部署配置是私有的。其文档来源在 [crateview/docs](https://github.com/crateview/docs).
+
+## 自定义已安装应用的品牌
+
+已安装应用使用 `NUXT_PUBLIC_BRAND_NAME` 和 `NUXT_PUBLIC_BRAND_DESCRIPTION`。专用 PWA 图标独立于浅色/深色标志和 favicon。192 像素 PNG 同时用作 Apple 触控图标。默认安装图标使用 Crateview 标志。
+
+在主机上创建准确为 192×192 和 512×512 像素的两个 PNG 文件，并允许容器用户读取。以下覆盖配置将文件只读挂载；请与现有 Compose 文件组合使用。若使用 URL 覆盖，请设置 `NUXT_PUBLIC_BRAND_PWA_ICON_192` 和 `NUXT_PUBLIC_BRAND_PWA_ICON_512`。
+
+```yaml
+services:
+  frontend:
+    volumes:
+      - ./branding:/app/branding:ro
+    environment:
+      NUXT_BRAND_PWA_ICON_192_FILE: /app/branding/pwa-192.png
+      NUXT_BRAND_PWA_ICON_512_FILE: /app/branding/pwa-512.png
+```
+
+浏览器负责管理已安装应用的元数据，因此图标更改可能延迟显示。重启 Crateview 会应用运行时配置，但不能保证现有安装的图标立即更新。

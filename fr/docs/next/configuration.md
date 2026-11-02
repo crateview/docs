@@ -70,3 +70,16 @@ La supervision est facultative et désactivée par défaut. La vue d'ensemble af
 Administration regroupe Paramètres et Utilisateurs. Le menu du compte propose aussi langue et thème. Compte modifie votre mot de passe après vérification de l'actuel. La liste serveur contrôle consultation et création des comptes ; les droits des jetons sont en lecture seule. Un nouveau mot de passe exige au moins 12 caractères et au plus 72 octets UTF-8. Les nouveaux comptes à jetons n'ont aucun accès initial aux dépôts.
 
 La liste d’autorisation du serveur contrôle la consultation, la création, la réinitialisation des mots de passe et la suppression des comptes. Le menu à trois points aligné à droite permet aux administrateurs de réinitialiser le mot de passe d’un autre utilisateur sans son ancien mot de passe ou de supprimer son compte après confirmation. La réinitialisation conserve les droits sur les dépôts ; la suppression les retire. Votre propre menu ouvre Compte pour changer votre mot de passe avec le mot de passe actuel ; la suppression de votre propre compte est bloquée.
+
+## Configurer les icônes PWA
+
+| Variable | Valeur par défaut | Rôle |
+| --- | --- | --- |
+| `NUXT_PUBLIC_BRAND_PWA_ICON_192` | `/branding/pwa-192.png` | URL de l’icône d’installation de 192 pixels. |
+| `NUXT_PUBLIC_BRAND_PWA_ICON_512` | `/branding/pwa-512.png` | URL de l’icône d’installation de 512 pixels. |
+| `NUXT_BRAND_PWA_ICON_192_FILE` | — | Fichier PNG privé prioritaire de 192 pixels. |
+| `NUXT_BRAND_PWA_ICON_512_FILE` | — | Fichier PNG privé prioritaire de 512 pixels. |
+
+Les fichiers locaux ont priorité sur leurs URL publiques respectives. Il doit s’agir de PNG lisibles et non vides, aux dimensions carrées exactes. Un fichier invalide empêche le démarrage. Les chemins relatifs partent du répertoire de travail du serveur ; les chemins du conteneur doivent désigner des fichiers lisibles dans celui-ci. Redémarrez après modification.
+
+Les URL locales d’icônes et le manifeste respectent `NUXT_APP_BASE_URL`, par exemple `/registry/` ; les URL HTTP(S) externes sont conservées. Les variables de fichiers privés ne stockent pas de secrets : les images sont publiques, seuls leurs chemins restent côté serveur.

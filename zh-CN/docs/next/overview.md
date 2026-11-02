@@ -45,3 +45,9 @@ Browser / Docker / Podman / ORAS
 服务器允许列表控制账户查看、创建、密码重置和删除。 右侧三点菜单允许管理员在不提供旧密码的情况下重置其他用户的密码，或在确认后删除其账户。重置密码保留仓库权限；删除账户会移除权限。自己的菜单会打开“账户”，需要当前密码才能更改密码；不能删除自己的账户。
 
 从[安装](/zh-CN/docs/next/installation)]开始，然后查看[配置](/zh-CN/docs/next/configuration)和[身份验证](/zh-CN/docs/next/authentication)。
+
+## 安装为应用（PWA）
+
+可安装的应用，提供本地化离线启动提示、重试和自定义图标。浏览镜像仓库和账户操作需要网络连接。
+
+[安装为应用（PWA）](/zh-CN/docs/next/installation#pwa)

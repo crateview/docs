@@ -78,3 +78,21 @@ services:
 Buat ketiga berkas di `./branding` pada host dan izinkan pengguna `node` dalam container membacanya. Jalankan `docker compose -f compose.yaml -f compose.branding.yaml up -d`. Mount bersifat hanya baca; jalur yang dikonfigurasi merujuk pada berkas di dalam container. Variabel berkas privat ini berlaku untuk UI registry.
 
 Situs web Crateview menggunakan kembali tanda UI registri, default tema, dan nama variabel merek. Situs web dikelola secara terpisah; konfigurasi sumber dan penerapannya bersifat pribadi. Sumber dokumentasinya bersifat publik di [crateview/docs](https://github.com/crateview/docs).
+
+## Identitas aplikasi terpasang
+
+Aplikasi memakai `NUXT_PUBLIC_BRAND_NAME` dan `NUXT_PUBLIC_BRAND_DESCRIPTION`. Ikon PWA terpisah dari logo terang/gelap dan favicon. PNG 192 piksel juga menjadi ikon sentuh Apple. Ikon bawaan memakai tanda Crateview.
+
+Buat kedua PNG berukuran tepat 192×192 dan 512×512 piksel pada host dan izinkan pengguna kontainer membacanya. Overlay berikut memasangnya hanya-baca; gabungkan dengan Compose yang ada. Untuk URL, gunakan `NUXT_PUBLIC_BRAND_PWA_ICON_192` dan `NUXT_PUBLIC_BRAND_PWA_ICON_512`.
+
+```yaml
+services:
+  frontend:
+    volumes:
+      - ./branding:/app/branding:ro
+    environment:
+      NUXT_BRAND_PWA_ICON_192_FILE: /app/branding/pwa-192.png
+      NUXT_BRAND_PWA_ICON_512_FILE: /app/branding/pwa-512.png
+```
+
+Perubahan ikon mungkin terlambat muncul karena browser mengelola metadata aplikasi terpasang. Memulai ulang Crateview menerapkan konfigurasi, tetapi tidak menjamin ikon yang sudah terpasang langsung diperbarui.

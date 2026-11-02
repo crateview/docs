@@ -45,3 +45,9 @@ Administración agrupa Ajustes y Usuarios. El menú de cuenta también ofrece id
 La lista de permisos del servidor controla la consulta, creación, restablecimiento de contraseñas y eliminación de cuentas. El menú de tres puntos alineado a la derecha permite a los administradores restablecer la contraseña de otro usuario sin la anterior o eliminar su cuenta tras confirmar. El restablecimiento conserva los permisos de los repositorios; la eliminación los retira. Tu propio menú abre Cuenta para cambiar la contraseña con la actual; no puedes eliminar tu propia cuenta.
 
 Comience con [installation](/es/docs/next/installation), luego revise [configuration](/es/docs/next/configuration) y [authentication](/es/docs/next/authentication).
+
+## Instalar como aplicación (PWA)
+
+Aplicación instalable con aviso de inicio sin conexión traducido, reintento e iconos configurables. Navegar por el registro y usar cuentas requiere conexión de red.
+
+[Instalar como aplicación (PWA)](/es/docs/next/installation#pwa)

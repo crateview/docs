@@ -45,3 +45,9 @@ Administração agrupa Configurações e Usuários. O menu da conta também ofer
 A lista de permissões do servidor controla a listagem, criação, redefinição de senhas e exclusão de contas. O menu de três pontos alinhado à direita permite aos administradores redefinir a senha de outro usuário sem a senha antiga ou excluir sua conta após confirmação. A redefinição preserva as permissões dos repositórios; a exclusão as remove. Seu próprio menu abre Conta para alterar sua senha com a senha atual; a exclusão da própria conta é bloqueada.
 
 Comece com [instalação](/pt-BR/docs/next/installation) e, em seguida, revise [configuração](/pt-BR/docs/next/configuration) e [autenticação](/pt-BR/docs/next/authentication).
+
+## Instalar como aplicativo (PWA)
+
+Aplicativo instalável com aviso offline traduzido, nova tentativa e ícones configuráveis. Navegação no registro e ações de conta precisam de rede.
+
+[Instalar como aplicativo (PWA)](/pt-BR/docs/next/installation#pwa)

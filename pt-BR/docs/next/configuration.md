@@ -70,3 +70,16 @@ Monitoramento opcional, desativado por padrão. Visão geral abre o painel quand
 Administração agrupa Configurações e Usuários. O menu da conta também oferece idioma e tema. Conta altera sua senha com confirmação da atual. A lista do servidor controla listagem e criação de contas; concessões de token são somente leitura. Novas senhas exigem no mínimo 12 caracteres e no máximo 72 bytes UTF-8. Novas contas de token começam sem acesso a repositórios.
 
 A lista de permissões do servidor controla a listagem, criação, redefinição de senhas e exclusão de contas. O menu de três pontos alinhado à direita permite aos administradores redefinir a senha de outro usuário sem a senha antiga ou excluir sua conta após confirmação. A redefinição preserva as permissões dos repositórios; a exclusão as remove. Seu próprio menu abre Conta para alterar sua senha com a senha atual; a exclusão da própria conta é bloqueada.
+
+## Configuração de ícones PWA
+
+| Variável | Padrão | Finalidade |
+| --- | --- | --- |
+| `NUXT_PUBLIC_BRAND_PWA_ICON_192` | `/branding/pwa-192.png` | URL do ícone de instalação de 192 pixels. |
+| `NUXT_PUBLIC_BRAND_PWA_ICON_512` | `/branding/pwa-512.png` | URL do ícone de instalação de 512 pixels. |
+| `NUXT_BRAND_PWA_ICON_192_FILE` | — | Arquivo PNG privado de 192 pixels com prioridade. |
+| `NUXT_BRAND_PWA_ICON_512_FILE` | — | Arquivo PNG privado de 512 pixels com prioridade. |
+
+Arquivos locais prevalecem sobre as respectivas URLs públicas. Exigem PNGs legíveis, não vazios e com dimensões quadradas exatas. Arquivos inválidos impedem a inicialização. Caminhos relativos partem do diretório de trabalho do servidor; caminhos do contêiner devem apontar para arquivos legíveis dentro dele. Reinicie após alterações.
+
+URLs locais de ícones e o manifesto respeitam `NUXT_APP_BASE_URL`, por exemplo `/registry/`; URLs HTTP(S) externas são preservadas. Não guarde segredos nas variáveis de arquivo privado: as imagens são públicas, embora os caminhos permaneçam no servidor.
