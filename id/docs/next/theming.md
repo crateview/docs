@@ -1,6 +1,6 @@
 ---
-title: "Pencitraan merek & tema"
-description: "Gunakan identitas Anda sendiri sambil tetap mempertahankan sistem desain asli Nuxt UI."
+title: 'Pencitraan merek & tema'
+description: 'Gunakan identitas Anda sendiri sambil tetap mempertahankan sistem desain asli Nuxt UI.'
 ---
 
 ![Pencitraan merek & tema](https://crateview.de/images/docs/next/settings-light.webp)
@@ -49,5 +49,32 @@ NUXT_PUBLIC_BRAND_TITLE_TEMPLATE=%s · My Registry
 ```
 
 Tempatkan aset lokal di `public/` sebelum membangun, atau gunakan URL aset HTTP(S). Tautan produk, dokumentasi, dan repositori opsional yang ada dapat dikonfigurasi melalui variabel `NUXT_PUBLIC_BRAND_*_URL` yang sesuai. Konfigurasi publik terlihat di browser dan tidak boleh mengandung rahasia.
+
+### Berkas server tanpa membangun ulang
+
+Anda juga dapat mengatur jalur berkas privat di server. Setiap berkas yang dikonfigurasi diutamakan dibanding URL publik terkait; variabel berkas kosong mempertahankan pengaturan URL. Jalur absolut didukung; jalur relatif dihitung dari direktori kerja server (`/app` pada image Docker). Jalur berkas tidak pernah dikirim ke browser. Asetnya bersifat publik, termasuk sebelum masuk.
+
+```dotenv
+NUXT_BRAND_LOGO_LIGHT_FILE=/app/branding/logo-light.svg
+NUXT_BRAND_LOGO_DARK_FILE=/app/branding/logo-dark.svg
+NUXT_BRAND_FAVICON_FILE=/app/branding/favicon.ico
+```
+
+Ekstensi yang didukung: SVG, PNG, JPG/JPEG, WebP, GIF, dan ICO. Berkas harus berupa berkas biasa yang dapat dibaca dan tidak kosong; konfigurasi tidak valid menggagalkan startup server. Berkas dimuat saat startup: mulai ulang setelah mengubah jalur atau isinya. Tidak perlu membangun ulang.
+
+Untuk Docker Compose, buat berkas override `compose.branding.yaml`:
+
+```yaml
+services:
+  frontend:
+    volumes:
+      - ./branding:/app/branding:ro
+    environment:
+      NUXT_BRAND_LOGO_LIGHT_FILE: /app/branding/logo-light.svg
+      NUXT_BRAND_LOGO_DARK_FILE: /app/branding/logo-dark.svg
+      NUXT_BRAND_FAVICON_FILE: /app/branding/favicon.ico
+```
+
+Buat ketiga berkas di `./branding` pada host dan izinkan pengguna `node` dalam container membacanya. Jalankan `docker compose -f compose.yaml -f compose.branding.yaml up -d`. Mount bersifat hanya baca; jalur yang dikonfigurasi merujuk pada berkas di dalam container. Variabel berkas privat ini berlaku untuk UI registry.
 
 Situs web Crateview menggunakan kembali tanda UI registri, default tema, dan nama variabel merek. Situs web dikelola secara terpisah; konfigurasi sumber dan penerapannya bersifat pribadi. Sumber dokumentasinya bersifat publik di [crateview/docs](https://github.com/crateview/docs).

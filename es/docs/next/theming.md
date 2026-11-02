@@ -1,6 +1,6 @@
 ---
-title: "Marca y temática"
-description: "Utilice su propia identidad manteniendo el sistema de diseño nativo de la interfaz de usuario Nuxt."
+title: 'Marca y temática'
+description: 'Utilice su propia identidad manteniendo el sistema de diseño nativo de la interfaz de usuario Nuxt.'
 ---
 
 ![Marca y temática](https://crateview.de/images/docs/next/settings-light.webp)
@@ -49,5 +49,32 @@ NUXT_PUBLIC_BRAND_TITLE_TEMPLATE=%s · My Registry
 ```
 
 Coloque los activos locales en `public/` antes de compilarlos o utilice URL de activos HTTP(S). Los enlaces de repositorio, documentación y productos opcionales existentes se pueden configurar a través de sus variables `NUXT_PUBLIC_BRAND_*_URL` correspondientes. La configuración pública es visible en el navegador y nunca debe contener secretos.
+
+### Archivos del servidor sin recompilar
+
+También puedes configurar rutas privadas a archivos del servidor. Cada archivo configurado tiene prioridad sobre su URL pública correspondiente; una variable de archivo vacía conserva la URL. Se admiten rutas absolutas; las relativas parten del directorio de trabajo del servidor (`/app` en la imagen Docker). Las rutas nunca se envían al navegador. Los recursos son públicos, incluso antes de iniciar sesión.
+
+```dotenv
+NUXT_BRAND_LOGO_LIGHT_FILE=/app/branding/logo-light.svg
+NUXT_BRAND_LOGO_DARK_FILE=/app/branding/logo-dark.svg
+NUXT_BRAND_FAVICON_FILE=/app/branding/favicon.ico
+```
+
+Extensiones admitidas: SVG, PNG, JPG/JPEG, WebP, GIF e ICO. Deben ser archivos normales, legibles y no vacíos; una configuración inválida impide iniciar el servidor. Los archivos se cargan al iniciar: reinicia después de cambiar rutas o contenidos. No es necesario recompilar.
+
+Para Docker Compose, crea un archivo de sobrescritura `compose.branding.yaml`:
+
+```yaml
+services:
+  frontend:
+    volumes:
+      - ./branding:/app/branding:ro
+    environment:
+      NUXT_BRAND_LOGO_LIGHT_FILE: /app/branding/logo-light.svg
+      NUXT_BRAND_LOGO_DARK_FILE: /app/branding/logo-dark.svg
+      NUXT_BRAND_FAVICON_FILE: /app/branding/favicon.ico
+```
+
+Crea los tres archivos en `./branding` del host y permite que el usuario `node` del contenedor los lea. Ejecuta `docker compose -f compose.yaml -f compose.branding.yaml up -d`. El montaje es de solo lectura; las rutas configuradas corresponden a archivos dentro del contenedor. Estas variables privadas de archivos se aplican a la interfaz del registro.
 
 El sitio web Crateview reutiliza la marca de la interfaz de usuario del registro, los valores predeterminados del tema y los nombres de las variables de marca. El sitio web se mantiene por separado; su configuración de origen e implementación son privadas. Sus fuentes de documentación son públicas en [crateview/docs](https://github.com/crateview/docs).

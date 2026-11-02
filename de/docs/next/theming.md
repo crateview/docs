@@ -50,4 +50,31 @@ NUXT_PUBLIC_BRAND_TITLE_TEMPLATE=%s · Meine Registry
 
 Lege lokale Assets vor dem Build in `public/` ab oder verwende HTTP(S)-URLs. Optionale Links zu Produkt, Dokumentation und Repository lassen sich über die passenden `NUXT_PUBLIC_BRAND_*_URL`-Variablen setzen. Öffentliche Konfiguration ist im Browser sichtbar und darf keine Geheimnisse enthalten.
 
+### Serverdateien ohne Neubuild
+
+Alternativ kannst du private serverseitige Dateipfade konfigurieren. Jede konfigurierte Datei hat Vorrang vor ihrer öffentlichen URL; eine leere Datei-Variable behält die URL-Einstellung bei. Absolute Pfade werden unterstützt; relative Pfade beziehen sich auf das Arbeitsverzeichnis des Servers (`/app` im Docker-Image). Dateipfade werden nie an den Browser gesendet. Die Assets selbst sind öffentlich, auch vor der Anmeldung.
+
+```dotenv
+NUXT_BRAND_LOGO_LIGHT_FILE=/app/branding/logo-light.svg
+NUXT_BRAND_LOGO_DARK_FILE=/app/branding/logo-dark.svg
+NUXT_BRAND_FAVICON_FILE=/app/branding/favicon.ico
+```
+
+Unterstützte Endungen: SVG, PNG, JPG/JPEG, WebP, GIF und ICO. Dateien müssen lesbare, nicht leere reguläre Dateien sein; ungültige Einstellungen verhindern den Serverstart. Dateien werden beim Start geladen: Starte nach Änderungen an Pfaden oder Dateiinhalten neu. Ein Neubuild ist nicht erforderlich.
+
+Erstelle für Docker Compose eine Override-Datei `compose.branding.yaml`:
+
+```yaml
+services:
+  frontend:
+    volumes:
+      - ./branding:/app/branding:ro
+    environment:
+      NUXT_BRAND_LOGO_LIGHT_FILE: /app/branding/logo-light.svg
+      NUXT_BRAND_LOGO_DARK_FILE: /app/branding/logo-dark.svg
+      NUXT_BRAND_FAVICON_FILE: /app/branding/favicon.ico
+```
+
+Lege die drei Dateien auf dem Host unter `./branding` an und erlaube dem Container-Benutzer `node` den Lesezugriff. Starte mit `docker compose -f compose.yaml -f compose.branding.yaml up -d`. Der Mount ist schreibgeschützt; konfigurierte Pfade beziehen sich auf Dateien im Container. Diese privaten Datei-Variablen gelten für das Registry-UI.
+
 Die Crateview-Website übernimmt Logo, Theme-Defaults und Branding-Variablennamen aus dem Registry-UI. Die Website wird separat gepflegt; ihr Quellcode und ihre Deployment-Konfiguration sind privat. Die Dokumentationsquellen sind öffentlich in [crateview/docs](https://github.com/crateview/docs).

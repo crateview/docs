@@ -1,6 +1,6 @@
 ---
-title: "Image de marque et thème"
-description: "Utilisez votre propre identité tout en conservant le système de conception natif de l’interface utilisateur Nuxt."
+title: 'Image de marque et thème'
+description: 'Utilisez votre propre identité tout en conservant le système de conception natif de l’interface utilisateur Nuxt.'
 ---
 
 ![Image de marque et thème](https://crateview.de/images/docs/next/settings-light.webp)
@@ -49,5 +49,32 @@ NUXT_PUBLIC_BRAND_TITLE_TEMPLATE=%s · My Registry
 ```
 
 Placez les ressources locales dans `public/` avant de créer ou utilisez les URL des ressources HTTP(S). Les liens de produits, de documentation et de référentiel facultatifs existants peuvent être configurés via leurs variables `NUXT_PUBLIC_BRAND_*_URL` correspondantes. La configuration publique est visible dans le navigateur et ne doit jamais contenir de secrets.
+
+### Fichiers serveur sans recompilation
+
+Vous pouvez aussi configurer des chemins de fichiers privés côté serveur. Chaque fichier configuré remplace son URL publique correspondante ; une variable de fichier vide conserve le réglage URL. Les chemins absolus sont acceptés ; les chemins relatifs partent du répertoire de travail du serveur (`/app` dans l’image Docker). Les chemins ne sont jamais envoyés au navigateur. Les ressources restent publiques, même avant la connexion.
+
+```dotenv
+NUXT_BRAND_LOGO_LIGHT_FILE=/app/branding/logo-light.svg
+NUXT_BRAND_LOGO_DARK_FILE=/app/branding/logo-dark.svg
+NUXT_BRAND_FAVICON_FILE=/app/branding/favicon.ico
+```
+
+Extensions acceptées : SVG, PNG, JPG/JPEG, WebP, GIF et ICO. Les fichiers doivent être ordinaires, lisibles et non vides ; une configuration invalide empêche le démarrage du serveur. Les fichiers sont chargés au démarrage : redémarrez après tout changement de chemin ou de contenu. Aucune recompilation n’est nécessaire.
+
+Pour Docker Compose, créez un fichier de surcharge `compose.branding.yaml` :
+
+```yaml
+services:
+  frontend:
+    volumes:
+      - ./branding:/app/branding:ro
+    environment:
+      NUXT_BRAND_LOGO_LIGHT_FILE: /app/branding/logo-light.svg
+      NUXT_BRAND_LOGO_DARK_FILE: /app/branding/logo-dark.svg
+      NUXT_BRAND_FAVICON_FILE: /app/branding/favicon.ico
+```
+
+Créez les trois fichiers dans `./branding` sur l’hôte et autorisez l’utilisateur `node` du conteneur à les lire. Lancez `docker compose -f compose.yaml -f compose.branding.yaml up -d`. Le montage est en lecture seule ; les chemins configurés désignent les fichiers dans le conteneur. Ces variables de fichiers privées concernent l’interface du registre.
 
 Le site Web Crateview réutilise la marque de l'interface utilisateur du registre, les valeurs par défaut du thème et les noms des variables de marque. Le site Web est géré séparément ; sa source et sa configuration de déploiement sont privées. Ses sources de documentation sont publiques dans [crateview/docs](https://github.com/crateview/docs).
