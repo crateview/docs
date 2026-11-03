@@ -9,6 +9,12 @@ Os padrões do aplicativo são definidos em `nuxt.config.ts` e `app/app.config.t
 
 Reinicie o servidor após alterar as variáveis ​​de ambiente de tempo de execução. A edição da configuração do componente no nível de origem requer uma nova compilação de produção.
 
+## Formato de data e hora
+
+Defina `NUXT_PUBLIC_DATE_FORMAT` em tempo de execução para formatar todas as datas da interface. O fuso horário vem do navegador. Se o valor estiver vazio ou for inválido, o Crateview usa a configuração regional do navegador.
+
+Exemplo: `DD.MM.YYYY HH:mm`. Tokens: `YYYY`, `MM`, `DD`, `HH`, `mm`, `ss`, `Z` (UTC ±HH:mm). Coloque texto literal entre colchetes, por exemplo `[às]`.
+
 ## Configurações de registro e sessão
 
 | Variável | Padrão | Propósito |

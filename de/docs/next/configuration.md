@@ -9,6 +9,12 @@ Die Standardwerte stehen in `nuxt.config.ts` und `app/app.config.ts`. Umgebungsv
 
 Starte den Server nach Änderungen an Laufzeitvariablen neu. Änderungen an Komponenten-Konfiguration im Quellcode benötigen einen neuen Produktionsbuild.
 
+## Datums- und Uhrzeitformat
+
+Setze `NUXT_PUBLIC_DATE_FORMAT` zur Laufzeit, um alle Datumsanzeigen zu formatieren. Die Zeitzone kommt vom Browser. Ist die Variable leer oder ungültig, verwendet Crateview das Browserformat.
+
+Beispiel: `DD.MM.YYYY HH:mm`. Platzhalter: `YYYY`, `MM`, `DD`, `HH`, `mm`, `ss`, `Z` (UTC ±HH:mm). Text in eckige Klammern setzen, etwa `[um]`.
+
 ## Registry- und Sitzungseinstellungen
 
 | Variable                       | Standard                | Zweck                                           |

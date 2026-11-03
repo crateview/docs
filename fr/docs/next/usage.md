@@ -5,7 +5,7 @@ description: "Parcourez les images, changez de plate-forme et inspectez les donn
 
 ## Rechercher des référentiels et des balises
 
-Explorer liste les dépôts. La recherche accepte les noms et repository:tag. Ouvrez un dépôt pour voir ses tags.
+Le champ de recherche au-dessus des résultats filtre pendant la saisie. Il accepte les noms de dépôts et `repository:tag`. La vue Explorer et la liste des tags affichent la plage actuelle et le total.
 
 Les dépôts utilisent un tableau par défaut, avec une vue grille disponible. Les noms avec barres forment des espaces de noms. La barre latérale se redimensionne et se replie, mémorise son état localement et contient la recherche.
 

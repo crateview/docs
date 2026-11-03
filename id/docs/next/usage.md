@@ -5,7 +5,7 @@ description: "Navigasikan gambar, ganti platform, dan periksa data di balik tag.
 
 ## Temukan repositori dan tag
 
-Jelajah menampilkan repositori. Pencarian mendukung nama dan repository:tag. Buka repositori untuk melihat tag.
+Kolom pencarian di atas hasil Explore menyaring saat Anda mengetik. Kolom ini menerima nama repositori dan `repository:tag`. Explore dan daftar tag menampilkan rentang saat ini dan jumlah total.
 
 Repositori memakai tabel secara default; tersedia tampilan kisi. Nama dengan garis miring membentuk namespace. Bilah samping dapat diubah ukurannya dan diciutkan, menyimpan keadaan lokal dan memuat pencarian.
 
