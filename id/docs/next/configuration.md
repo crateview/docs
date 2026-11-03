@@ -9,6 +9,12 @@ Default aplikasi ditentukan dalam `nuxt.config.ts` dan `app/app.config.ts`. Vari
 
 Mulai ulang server setelah mengubah variabel lingkungan runtime. Mengedit konfigurasi komponen tingkat sumber memerlukan build produksi baru.
 
+## Format tanggal dan waktu
+
+Atur `NUXT_PUBLIC_DATE_FORMAT` saat runtime untuk memformat semua tanggal di antarmuka. Zona waktu mengikuti browser. Jika nilainya kosong atau tidak valid, Crateview menggunakan setelan regional browser.
+
+Contoh: `DD.MM.YYYY HH:mm`. Token: `YYYY`, `MM`, `DD`, `HH`, `mm`, `ss`, `Z` (UTC ±HH:mm). Letakkan teks literal dalam kurung siku, misalnya `[pukul]`.
+
 ## Pengaturan registri dan sesi
 
 | Variabel | Bawaan | Tujuan |

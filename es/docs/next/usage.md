@@ -5,7 +5,7 @@ description: "Navegue por imágenes, cambie de plataforma e inspeccione los dato
 
 ## Encuentra repositorios y etiquetas
 
-Explorar enumera repositorios. La búsqueda acepta nombres y repository:tag. Abre un repositorio para ver sus etiquetas.
+El buscador sobre los resultados de Explorar filtra mientras escribes. Admite nombres de repositorios y `repository:tag`. Explorar y la lista de etiquetas muestran el intervalo actual y el total.
 
 Los repositorios usan tabla por defecto; puedes cambiar a cuadrícula. Los nombres con barras forman espacios de nombres. La barra lateral se redimensiona y contrae, guarda su estado localmente y contiene la búsqueda.
 

@@ -5,7 +5,7 @@ description: 'Navigate images, switch platforms and inspect the data behind a ta
 
 ## Find repositories and tags
 
-Explore lists repositories. Search supports repository names and repository:tag. Open a repository to inspect its tags.
+The search field above the Explore results filters as you type. It accepts repository names and `repository:tag`. Explore and the tag list show the current range and total.
 
 Repositories use a table by default. Switch between table and grid; slash-separated names form nested namespaces. Resize or collapse the sidebar; its state is saved locally. Search is in the sidebar.
 

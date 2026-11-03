@@ -9,6 +9,12 @@ Les valeurs par défaut de l'application sont définies dans `nuxt.config.ts` et
 
 Redémarrez le serveur après avoir modifié les variables d'environnement d'exécution. La modification de la configuration des composants au niveau source nécessite une nouvelle version de production.
 
+## Format de date et d’heure
+
+Définissez `NUXT_PUBLIC_DATE_FORMAT` à l’exécution pour formater toutes les dates de l’interface. Le fuseau horaire vient du navigateur. Si la valeur est vide ou invalide, Crateview utilise les paramètres régionaux du navigateur.
+
+Exemple: `DD.MM.YYYY HH:mm`. Jetons: `YYYY`, `MM`, `DD`, `HH`, `mm`, `ss`, `Z` (UTC ±HH:mm). Placez le texte littéral entre crochets, par exemple `[à]`.
+
 ## Paramètres du registre et de la session
 
 | Variable | Défaut | But |

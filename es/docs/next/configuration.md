@@ -9,6 +9,12 @@ Los valores predeterminados de la aplicación se definen en `nuxt.config.ts` y `
 
 Reinicie el servidor después de cambiar las variables del entorno de ejecución. La edición de la configuración de componentes a nivel de fuente requiere una nueva compilación de producción.
 
+## Formato de fecha y hora
+
+Configura `NUXT_PUBLIC_DATE_FORMAT` en tiempo de ejecución para dar formato a todas las fechas de la interfaz. La zona horaria viene del navegador. Si el valor está vacío o no es válido, Crateview usa la configuración regional del navegador.
+
+Ejemplo: `DD.MM.YYYY HH:mm`. Tokens: `YYYY`, `MM`, `DD`, `HH`, `mm`, `ss`, `Z` (UTC ±HH:mm). Encierra el texto literal entre corchetes, por ejemplo `[a las]`.
+
 ## Configuración de registro y sesión
 
 | Variable | Por defecto | Objetivo |

@@ -5,7 +5,7 @@ description: "Navegue pelas imagens, troque de plataforma e inspecione os dados 
 
 ## Encontre repositórios e tags
 
-Explorar lista repositórios. A busca aceita nomes e repository:tag. Abra um repositório para ver tags.
+O campo de busca acima dos resultados de Explorar filtra enquanto você digita. Aceita nomes de repositórios e `repository:tag`. A página Explorar e a lista de tags mostram o intervalo atual e o total.
 
 Repositórios usam tabela por padrão, com opção de grade. Nomes com barras formam namespaces. A barra lateral pode ser redimensionada e recolhida, salva seu estado localmente e contém a busca.
 

@@ -9,6 +9,12 @@ Application defaults are defined in `nuxt.config.ts` and `app/app.config.ts`. En
 
 Restart the server after changing runtime environment variables. Editing source-level component configuration requires a new production build.
 
+## Date and time format
+
+Set `NUXT_PUBLIC_DATE_FORMAT` at runtime to format all dates in the interface. The browser supplies the time zone. If the variable is empty or invalid, Crateview uses the browser’s locale.
+
+Example: `DD.MM.YYYY HH:mm`. Tokens: `YYYY`, `MM`, `DD`, `HH`, `mm`, `ss`, `Z` (UTC ±HH:mm). Put literal text in square brackets, for example `[at]`.
+
 ## Registry and session settings
 
 | Variable                       | Default                 | Purpose                             |

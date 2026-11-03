@@ -5,7 +5,7 @@ description: 'Images finden, Plattformen wechseln und die Daten hinter einem Tag
 
 ## Repositories und Tags finden
 
-Entdecken listet Repositories. Die Suche unterstützt Repository-Namen und repository:tag. Öffne ein Repository für seine Tags.
+Das Suchfeld über den Ergebnissen filtert während der Eingabe. Es akzeptiert Repository-Namen und `repository:tag`. Explore und die Tag-Liste zeigen den aktuellen Bereich und die Gesamtzahl.
 
 Repositories erscheinen standardmäßig als Tabelle. Tabelle und Raster sind umschaltbar; Namen mit Schrägstrichen bilden Namespaces. Die Sidebar lässt sich vergrößern und einklappen; ihr Zustand wird lokal gespeichert. Die Suche liegt in der Sidebar.
 
