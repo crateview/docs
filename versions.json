@@ -1,5 +1,5 @@
 {
-  "stable": "v0.7",
+  "stable": "v0.8",
   "versions": [
     {
       "id": "v0.1",
@@ -164,7 +164,7 @@
       "id": "v0.7",
       "release": "v0.7.0",
       "revision": "5847d7c50dd1744175fab26f18604b359732389c",
-      "status": "stable",
+      "status": "archived",
       "slugs": [
         "overview",
         "installation",
@@ -183,6 +183,30 @@
         "userActions": true
       },
       "docsRevision": "26385d4da0e4cabfe2a39ad394c89a8dddce0db8"
+    },
+    {
+      "id": "v0.8",
+      "release": "v0.8.0",
+      "revision": "244ad8eb2cea0317f9ab149c238def5b414af565",
+      "status": "stable",
+      "slugs": [
+        "overview",
+        "installation",
+        "configuration",
+        "authentication",
+        "theming",
+        "usage",
+        "operations",
+        "troubleshooting",
+        "monitoring"
+      ],
+      "captures": {
+        "overviewRoute": "/explore",
+        "monitoring": true,
+        "accounts": true,
+        "userActions": true
+      },
+      "docsRevision": "cb97cf8090549b792e795a5957da868551fe72fc"
     }
   ]
 }
